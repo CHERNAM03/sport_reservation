@@ -1,0 +1,22 @@
+{
+  "name": "sports-reservation-system-backend",
+  "version": "1.0.0",
+  "description": "Backend for the Sports Reservation System",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.6.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  },
+  "author": "",
+  "license": "ISC"
+}
