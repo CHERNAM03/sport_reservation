@@ -1,15 +1,16 @@
-version: '3.8'
-
 services:
+   # Frontend service configuration
   frontend:
     build:
       context: ./frontend
-      dockerfile: Dockerfile/dockerfile
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:80"
     depends_on:
       - backend
-
+    networks:
+      - app-network
+   # Backend service configuration
   backend:
     build:
       context: ./backend
@@ -23,7 +24,9 @@ services:
       - DB_NAME=sports_reservation
     depends_on:
       - db
-
+    networks:
+      - app-network
+    # Database service configuration
   db:
     image: mysql:5.7
     restart: always
@@ -32,3 +35,35 @@ services:
       MYSQL_DATABASE: sports_reservation
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+    networks:
+      - app-network
+    volumes:
+      - db-data:/var/lib/mysql
+
+  # PhpMyAdmin service configuration
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      PMA_HOST: db
+      PMA_PORT: 3306
+      MYSQL_ROOT_PASSWORD: root
+      PMA_ARBITRARY: 1
+    depends_on:
+      - db
+    networks:
+      - app-network
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  db-data:
+
+  
