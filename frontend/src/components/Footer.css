@@ -1,0 +1,30 @@
+.footer {
+    background-color: #f0f0f0; /* Couleur de fond claire */
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .links ul,
+  .social ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .links a,
+  .social a {
+    color: #333;
+    text-decoration: none;
+  }
+  
+  .copyright {
+    margin-top: 2rem;
+    border-top: 1px solid #ccc;
+    padding-top: 1rem;
+  }

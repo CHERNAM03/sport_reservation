@@ -1,0 +1,21 @@
+.header {
+    background-color: #f0f0f0; /* Fond clair */
+    padding: 1rem;
+  }
+  
+  .nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .nav-list a {
+    color: #333;
+    text-decoration: none;
+  }
