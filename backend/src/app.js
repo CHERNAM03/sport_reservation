@@ -1,8 +1,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const databaseConfig = require('./config/database');
-// const routes = require('./routes');
+const sequelize = require('./config/database');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,16 +24,25 @@ app.get('/', (req, res) => {
             <body>
                 <h1>Hello World!</h1>
                 <p>Welcome to the cheikh App</p>
+                <p>Welcome to the cheikh 1 App</p>
             </body>
         </html>
     `);
 });
 
-// Database connection
-// databaseConfig.connect();
+
+// Create database connection
+// Test database connection
+sequelize.authenticate()
+  .then(() => {
+    console.log('✅ Database connection established successfully.');
+  })
+  .catch(err => {
+    console.error('❌ Unable to connect to the database:', err);
+  });
 
 // Routes
-// app.use('/api', routes);
+//app.use('/api/auth', authRoutes);
 
 // Start the server
 
