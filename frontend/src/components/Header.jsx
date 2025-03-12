@@ -1,4 +1,6 @@
+// filepath: /Users/cheikhthiam/Desktop/Greeta/node/projPersonnelle/Ameer/sport_reservation/frontend/src/components/Header.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
@@ -6,28 +8,28 @@ function Header() {
     <header>
       <nav className="navbar navbar-expand-lg navbar-light bg-light fixed-top">
         <div className="container">
-          <a className="navbar-brand" href="index.html">
+          <Link className="navbar-brand" to="/">
             <span className="brand-my">MON</span>TERRAIN
-          </a>
+          </Link>
           <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon"></span>
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav ms-auto">
               <li className="nav-item">
-                <a className="nav-link active" href="index.html">Accueil</a>
+                <Link className="nav-link active" to="/">Accueil</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="reservation.html">Réserver</a>
+                <Link className="nav-link" to="/reservation">Réserver</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="terrain.html">Terrain</a>
+                <Link className="nav-link" to="/terrain">Terrain</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="contact.html">Contact</a>
+                <Link className="nav-link" to="/contact">Contact</Link>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="login.html">Connexion</a>
+                <Link className="nav-link" to="/login">Connexion</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">

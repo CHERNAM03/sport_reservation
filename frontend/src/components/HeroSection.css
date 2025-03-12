@@ -1,19 +1,49 @@
+:root {
+  --couleur-fond-bloc: green;
+  --couleur-texte-bloc: black;
+  --couleur-texte-titre: rgb(18, 3, 3);
+}
+
 .hero-section {
-    background-image: url('votre-image-de-fond.jpg'); /* Remplacez par votre image */
-    background-size: cover;
-    background-position: center;
-    color: white;
-    text-align: center;
+  background-image: url('/images/test.jpeg'); /* Chemin mis à jour */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat; /* Empêcher la répétition de l'image */
+  background-attachment: fixed; /* Fixer l'image en arrière-plan */
+  color: var(--couleur-texte-titre);
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.blocks {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap; /* Permettre aux blocs de passer à la ligne sur les petits écrans */
+  margin-top: 2rem;
+  padding: 0 20px;
+}
+
+.feature-card {
+  background-color: var(--couleur-fond-bloc);
+  color: var(--couleur-texte-bloc);
+  padding: 30px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.feature-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+}
+
+.feature-card p {
+  font-size: 1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .feature-card {
+    margin-bottom: 20px;
   }
-  
-  .blocks {
-    display: flex;
-    justify-content: space-around;
-    margin-top: 2rem;
-  }
-  
-  .block {
-    background-color: rgba(0, 0, 0, 0.7);
-    padding: 1rem;
-    border-radius: 8px;
-  }
+}
