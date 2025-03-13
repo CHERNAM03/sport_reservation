@@ -6,7 +6,7 @@ const authController = {
     signup: async (req, res) => {
         try {
             const { username, email, password } = req.body;
-            
+
             const user = await User.create({
                 username,
                 email,
@@ -19,7 +19,9 @@ const authController = {
                 { expiresIn: '1h' }
             );
 
-            res.status(201).json({
+            return res.status(201).json({
+                username: user.username,
+                email: user.email,
                 message: 'User created successfully',
                 token
             });

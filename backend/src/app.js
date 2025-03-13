@@ -40,9 +40,13 @@ sequelize.authenticate()
   .catch(err => {
     console.error('❌ Unable to connect to the database:', err);
   });
+  sequelize.sync()
+  .then(() => {
+    console.log('✅ Database & tables created!');
+  });
 
 // Routes
-//app.use('/api/auth', authRoutes);
+app.use('/api/auth', authRoutes);
 
 // Start the server
 
