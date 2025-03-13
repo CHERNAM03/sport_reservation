@@ -2,6 +2,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
+import { Content } from './components/Content';
 import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
 import Reservation from './pages/Reservation';
@@ -20,14 +21,14 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-          <Route path="/" element={<HeroSection />} />
-          <Route path="/reservation" element={<Reservation />} />
-          <Route path="/terrain" element={<Terrain />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/connexion" element={<Connexion />} />
-          <Route path="/inscription" element={<Inscription />} />
-          <Route path="/admin" element={<AdminDashboard />} />
-          <Route path="*" element={<NotFound />} />
+            <Route path="/" element={<HeroSection />} />
+            <Route path="/reservation" element={<Reservation />} />
+            <Route path="/terrain" element={<Terrain />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/connexion" element={<Connexion />} />
+            <Route path="/inscription" element={<Inscription />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

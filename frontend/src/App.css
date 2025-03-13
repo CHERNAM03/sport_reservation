@@ -1,3 +1,4 @@
+
 body {
   margin: 0;
   font-family: sans-serif;
@@ -15,7 +16,6 @@ body {
 }
 
 .container {
-  max-width: 1200px; /* Limite la largeur du conteneur */
-  margin: 0 auto; /* Centre le conteneur */
-  padding: 0 1rem; /* Ajoute un espacement horizontal */
+  max-width: 1200px !important; /* Ajustez cette valeur selon vos préférences */
 }
+

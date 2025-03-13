@@ -1,13 +1,20 @@
 .page-container {
+  background-image: url('/images/gazon.jpeg');
+  background-size: cover;
+  background-position: center;
   padding-top: 100px; /* Pour éviter le chevauchement avec le header */
   padding-bottom: 50px;
   min-height: 100vh;
-  background-color: #f9f9f9;
+  background-color: #f7f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .page-content {
   max-width: 800px;
-  margin: 0 auto;
+  width: 100%;
+  margin: 0 20px; /* Marges égales à gauche et à droite */
   padding: 20px;
   background-color: white;
   border-radius: 5px;

@@ -1,19 +1,62 @@
 .terrain-container {
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-  }
-  
-  .terrain-list {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-  }
-  
-  .terrain-item {
-    width: 30%;
-    margin-bottom: 20px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-  }
+  padding-top: 100px; /* Pour éviter le chevauchement avec le header */
+  padding-bottom: 50px;
+  min-height: 100vh;
+  background-color: #f9f9f9;
+  text-align: center;
+}
+
+.terrain-container h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.terrain-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.terrain-item {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  max-width: 300px;
+  text-align: left;
+}
+
+.terrain-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.terrain-item h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.terrain-item p {
+  font-size: 1rem;
+  color: #666;
+}
+
+.terrain-item .btn {
+  margin-top: 10px;
+  width: 100%;
+  padding: 10px;
+  background-color: #2eaa76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.terrain-item .btn:hover {
+  background-color: #279b68;
+}
