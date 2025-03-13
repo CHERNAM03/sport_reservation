@@ -1,4 +1,4 @@
-.connexion-container {
+.inscription-container {
     max-width: 400px;
     margin: 100px auto;
     padding: 20px;
@@ -8,13 +8,13 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   }
   
-  .connexion-form label {
+  .inscription-form label {
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
   }
   
-  .connexion-form input {
+  .inscription-form input {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
@@ -22,7 +22,7 @@
     border-radius: 5px;
   }
   
-  .connexion-form button {
+  .inscription-form button {
     width: 100%;
     padding: 10px;
     background-color: #2eaa76;
@@ -32,20 +32,6 @@
     cursor: pointer;
   }
   
-  .connexion-form button:hover {
+  .inscription-form button:hover {
     background-color: #279b68;
-  }
-  
-  .inscription-link {
-    text-align: center;
-    margin-top: 15px;
-  }
-  
-  .inscription-link a {
-    color: #2eaa76;
-    text-decoration: none;
-  }
-  
-  .inscription-link a:hover {
-    text-decoration: underline;
   }

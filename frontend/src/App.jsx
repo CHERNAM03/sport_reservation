@@ -1,5 +1,4 @@
 
-// filepath: /Users/cheikhthiam/Desktop/Greeta/node/projPersonnelle/Ameer/sport_reservation/frontend/src/App.jsx
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
@@ -9,6 +8,10 @@ import Reservation from './pages/Reservation';
 import Terrain from './pages/Terrain';
 import Contact from './pages/Contact';
 import Connexion from './pages/Connexion';
+import Inscription from './pages/Inscription';
+import AdminDashboard from './pages/AdminDashboard';
+import NotFound from './pages/NotFound';
+
 import './App.css';
 
 function App() {
@@ -22,7 +25,9 @@ function App() {
           <Route path="/terrain" element={<Terrain />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/connexion" element={<Connexion />} />
-          {/* Ajoutez d'autres routes ici */}
+          <Route path="/inscription" element={<Inscription />} />
+          <Route path="/admin" element={<AdminDashboard />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
       </div>

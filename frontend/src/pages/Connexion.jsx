@@ -1,4 +1,6 @@
+// filepath: /Users/cheikhthiam/Desktop/Greeta/node/projPersonnelle/Ameer/sport_reservation/frontend/src/pages/Connexion.jsx
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Connexion.css';
 
 function Connexion() {
@@ -14,6 +16,9 @@ function Connexion() {
 
         <button type="submit">Se connecter</button>
       </form>
+      <p className="inscription-link">
+        Pas de compte ? <Link to="/inscription">Créer un compte</Link>
+      </p>
     </div>
   );
 }

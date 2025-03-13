@@ -1,4 +1,3 @@
-// filepath: /Users/cheikhthiam/Desktop/Greeta/node/projPersonnelle/Ameer/sport_reservation/frontend/src/components/Header.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './Header.css';
@@ -29,7 +28,10 @@ function Header() {
                 <Link className="nav-link" to="/contact">Contact</Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/login">Connexion</Link>
+                <Link className="nav-link" to="/connexion">Connexion</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/admin">Admin</Link>
               </li>
             </ul>
             <form className="d-flex" role="search">

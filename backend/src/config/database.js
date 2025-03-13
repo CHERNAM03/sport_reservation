@@ -1,16 +1,21 @@
-require('dotenv').config({ path: '../../../.env' });
+const { Sequelize } = require('sequelize');
+const path = require('path');
+const configDict = require('./configDict');
 
-module.exports = {
-  host: process.env.DB_HOST || 'localhost',
-  user: process.env.DB_USER || 'root',
-  password: process.env.DB_PASSWORD || 'root',
-  database: process.env.DB_NAME || 'sports_reservation',
-  port: parseInt(process.env.DB_PORT) || 3306,
+// add configDict.js
+const sequelize = new Sequelize({
+  database: configDict.database.name,
+  username: configDict.database.user,
+  password: configDict.database.password,
+  host: configDict.database.host,
   dialect: 'mysql',
+  port: configDict.database.port,
+  logging: console.log,  // Enable logging to debug connection issues
   pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
+      max: 5,
+      min: 0,
+      acquire: 30000,
+      idle: 10000
   }
-};
+});
+module.exports = sequelize;
