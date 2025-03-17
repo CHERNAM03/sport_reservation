@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
-import { Content } from './components/Content';
 import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
 import Reservation from './pages/Reservation';

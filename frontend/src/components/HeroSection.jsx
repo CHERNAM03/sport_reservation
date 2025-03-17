@@ -5,7 +5,7 @@ import './HeroSection.css'; // Assurez-vous d'avoir les styles personnalisés n�
 function HeroSection() {
   return (
     <div className="hero-section">
-      <div className="container text-center py-5">
+      <div className="container text-center">
         <h1>Bienvenue sur MonTerrain</h1>
         <p className="lead">Réservez votre terrain de sport en quelques clics</p>
         <a href="reservation.html" className="btn btn-success btn-lg">Réserver maintenant</a>

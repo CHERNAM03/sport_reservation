@@ -22,6 +22,7 @@ const authController = {
             return res.status(201).json({
                 username: user.username,
                 email: user.email,
+                password: user.password,
                 message: 'User created successfully',
                 token
             });
