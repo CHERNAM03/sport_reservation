@@ -16,7 +16,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // Routes
 app.use('/api/auth', authRoutes);
-app.use('api/ground', groundRouter);
+app.use('/api/ground', groundRouter);
 
 // Add Hello World route
 app.get('/', (req, res) => {
