@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const sequelize = require('./config/database');
 const authRoutes = require('./routes/authRoutes');
+const groundRouter = require('./routes/groundRoutes');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -12,6 +14,9 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// Routes
+app.use('/api/auth', authRoutes);
+app.use('api/ground', groundRouter);
 
 // Add Hello World route
 app.get('/', (req, res) => {
@@ -45,8 +50,7 @@ sequelize.authenticate()
     console.log('✅ Database & tables created!');
   });
 
-// Routes
-app.use('/api/auth', authRoutes);
+
 
 // Start the server
 

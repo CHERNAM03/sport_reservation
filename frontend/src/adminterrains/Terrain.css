@@ -60,3 +60,53 @@
 .terrain-item .btn:hover {
   background-color: #279b68;
 }
+.add-terrain-container {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-terrain-container h3 {
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.add-terrain-container form label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: bold;
+}
+
+.add-terrain-container form input,
+.add-terrain-container form textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.add-terrain-container form button {
+  padding: 0.5rem 1rem;
+  background-color: #2eaa76;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-terrain-container form button:hover {
+  background-color: #279b68;
+}
+
+.success-message {
+  color: green;
+  margin-bottom: 1rem;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 1rem;
+}
