@@ -1,41 +1,65 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 import './Inscription.css';
 
 function Inscription() {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    password: ''
+    password: ''  
   });
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({
-      ...formData,
+    setFormData(prevState => ({
+      ...prevState,
       [name]: value
-    });
+    }));
+    setError(''); // Clear error when user types
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); // This prevents the default form submission
     try {
-      const response = await axios.post('http://localhost:5000/api/auth/signup/', formData, {
+      const config = {
         headers: {
           'Content-Type': 'application/json'
         }
-      });
-      console.log('Data submitted successfully:', response.data);
-      // Handle success (e.g., show a success message, redirect to another page, etc.)
+      };
+      console.log('Form data:', formData);
+      const response = await axios.post(
+        'http://localhost:5000/api/auth/signup', 
+        formData,
+        config
+      );
+      
+      console.log('Registration successful:', response.data);
+      setSuccess('Registration successful!');
+      
+      if (response.data.token) {
+        localStorage.setItem('token', response.data.token);
+      }
+      
+      setTimeout(() => {
+        navigate('/login');
+      }, 2000);
+
     } catch (error) {
-      console.error('Error submitting data:', error);
-      // Handle error (e.g., show an error message)
+      console.error('Registration error:', error.response?.data || error.message);
+      setError(error.response?.data?.message || 'An error occurred during registration');
     }
   };
 
   return (
     <div className="inscription-container">
       <h2>Créer un compte</h2>
+      {error && <div className="error-message">{error}</div>}
+      {success && <div className="success-message">{success}</div>}
+      
       <form className="inscription-form" onSubmit={handleSubmit}>
         <label htmlFor="username">Nom d'utilisateur :</label>
         <input
@@ -44,6 +68,7 @@ function Inscription() {
           name="username"
           value={formData.username}
           onChange={handleChange}
+          required
         />
 
         <label htmlFor="email">Email :</label>
@@ -53,15 +78,17 @@ function Inscription() {
           name="email"
           value={formData.email}
           onChange={handleChange}
+          required
         />
 
-        <label htmlFor="motdepasse">Mot de passe :</label>
+        <label htmlFor="password">Mot de passe :</label>
         <input
           type="password"
-          id="motdepasse"
-          name="motdepasse"
-          value={formData.motdepasse}
+          id="password"
+          name="password"
+          value={formData.password}
           onChange={handleChange}
+          required
         />
 
         <button type="submit">S'inscrire</button>

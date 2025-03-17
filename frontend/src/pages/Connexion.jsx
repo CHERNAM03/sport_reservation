@@ -10,7 +10,7 @@ function Connexion() {
   const [formData, setFormData] = useState({
     username: '',
     email: '',
-    motdepasse: ''
+    password: ''
   });
 
   const handleChange = (e) => {
@@ -52,12 +52,12 @@ function Connexion() {
           onChange={handleChange}
         />
 
-<label htmlFor="motdepasse">Mot de passe :</label>
+<label htmlFor="password">Mot de passe :</label>
         <input
-          type="password"
+          type="text"
           id="password"
           name="password"
-          value={formData.motdepasse}
+          value={formData.password}
           onChange={handleChange}
         />
         <button type="submit">Se connecter</button>
