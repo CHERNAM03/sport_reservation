@@ -1,0 +1,118 @@
+/* Conteneur principal */
+.terrain-container {
+    max-width: 1200px; /* Largeur maximale de la page */
+    margin: 50px auto; /* Centre la page horizontalement et ajoute un espace vertical */
+    padding: 20px; /* Espacement interne */
+    background-color: #f9f9f9; /* Couleur de fond */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre légère */
+  }
+  
+  /* Titre principal */
+  .terrain-container h2 {
+    text-align: center; /* Centre le texte */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 20px; /* Espacement sous le titre */
+  }
+  
+  /* Liste des terrains */
+  .terrain-list {
+    display: grid; /* Utilisation d'une grille pour afficher les terrains */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Colonnes adaptatives */
+    gap: 20px; /* Espacement entre les éléments */
+  }
+  
+  /* Élément individuel de terrain */
+  .terrain-item {
+    background-color: #fff; /* Couleur de fond */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 8px; /* Coins arrondis */
+    padding: 15px; /* Espacement interne */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Ombre légère */
+    text-align: center; /* Centre le contenu */
+  }
+  
+  /* Image du terrain */
+  .terrain-item img {
+    width: 100%; /* Image prend toute la largeur */
+    height: 200px; /* Hauteur fixe */
+    object-fit: cover; /* Ajuste l'image pour qu'elle remplisse le conteneur */
+    border-radius: 8px; /* Coins arrondis */
+    margin-bottom: 10px; /* Espacement sous l'image */
+  }
+  
+  /* Titre du terrain */
+  .terrain-item h3 {
+    font-size: 18px; /* Taille de police */
+    color: #333; /* Couleur du texte */
+    margin-bottom: 10px; /* Espacement sous le titre */
+  }
+  
+  /* Description et adresse */
+  .terrain-item p {
+    font-size: 14px; /* Taille de police */
+    color: #666; /* Couleur du texte */
+    margin-bottom: 10px; /* Espacement sous chaque paragraphe */
+  }
+  
+  /* Boutons */
+  .terrain-item button {
+    padding: 10px 15px; /* Espacement interne */
+    font-size: 14px; /* Taille de police */
+    color: #fff; /* Couleur du texte */
+    background-color: #007bff; /* Couleur de fond */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s ease; /* Animation au survol */
+  }
+  
+  .terrain-item button:hover {
+    background-color: #0056b3; /* Couleur au survol */
+  }
+  
+  /* Messages d'erreur */
+  .error-message {
+    color: #ff0000; /* Couleur rouge pour les erreurs */
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Messages de succès */
+  .success-message {
+    color: #28a745; /* Couleur verte pour les succès */
+    font-size: 14px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  /* Formulaire d'ajout de terrain */
+  .terrain-form {
+    margin-bottom: 30px; /* Espacement sous le formulaire */
+  }
+  
+  .terrain-form input {
+    width: 100%; /* Champs prennent toute la largeur */
+    padding: 10px; /* Espacement interne */
+    margin-bottom: 15px; /* Espacement entre les champs */
+    border: 1px solid #ddd; /* Bordure légère */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 14px; /* Taille de police */
+  }
+  
+  .terrain-form button {
+    width: 100%; /* Bouton prend toute la largeur */
+    padding: 10px; /* Espacement interne */
+    background-color: #28a745; /* Couleur de fond */
+    color: #fff; /* Couleur du texte */
+    border: none; /* Pas de bordure */
+    border-radius: 5px; /* Coins arrondis */
+    font-size: 16px; /* Taille de police */
+    cursor: pointer; /* Curseur pointeur */
+    transition: background-color 0.3s ease; /* Animation au survol */
+  }
+  
+  .terrain-form button:hover {
+    background-color: #218838; /* Couleur au survol */
+  }

@@ -1,14 +1,23 @@
 
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './HeroSection.css'; // Assurez-vous d'avoir les styles personnalisés nécessaires
 
 function HeroSection() {
+  const navigate = useNavigate(); // Hook pour la redirection
+
+  const handleReservationClick = () => {
+    navigate('/reservation'); // Redirige vers la page de réservation
+  };
   return (
     <div className="hero-section">
-      <div className="container text-center">
+     
+      <div  className= "container text-center">
         <h1>Bienvenue sur MonTerrain</h1>
-        <p className="lead">Réservez votre terrain de sport en quelques clics</p>
-        <a href="reservation.html" className="btn btn-success btn-lg">Réserver maintenant</a>
+        <p className="lead">Réservez vos terrains de football en quelques clics.</p>
+        <button className="btn btn-success btn-lg" onClick={handleReservationClick}>
+          Réserver maintenant
+        </button>
       </div>
       <div className="card text-bg-dark mt-5">
         <img src="/images/test2.jpeg" className="card-img" alt="Stade" />

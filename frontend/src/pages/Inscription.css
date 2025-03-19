@@ -1,4 +1,7 @@
 .inscription-container {
+    background-image: url('/images/gazon.jpeg');
+    background-size: cover;
+    background-position: center;
     max-width: 400px;
     margin: 100px auto;
     padding: 20px;
