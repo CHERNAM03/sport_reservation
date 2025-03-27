@@ -31,7 +31,7 @@ function Header() {
               <li className="nav-item dropdown">
                 <Link 
                   className="nav-link dropdown-toggle" 
-                  to="#" 
+                  to="" 
                   role="button" 
                   data-bs-toggle="dropdown"
                 >
@@ -63,7 +63,7 @@ function Header() {
               </li>
 
               <li className="nav-item">
-                <Link className="nav-link" to="/contact">Contact</Link>
+                <Link className="nav-link" to="/admin/dashboard">Dashboard</Link>
               </li>
             </ul>
 
