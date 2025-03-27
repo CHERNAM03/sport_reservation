@@ -4,13 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import HeroSection from './components/HeroSection';
 import Footer from './components/Footer';
-
-
-import Contact from './pages/Contact';
-import Connexion from './pages/Connexion';
-import Inscription from './pages/Inscription';
-
-import AdminTerrains from './adminterrains/AdminTerrains';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/AdminPanel/Admin';
 import LandingPage from './pages/UserPanle/LandingPage';
@@ -23,8 +16,8 @@ function App() {
       <div className="App">
         <Header />
         <Routes>
-            <Route path="/" element={<HeroSection />} />
-            <Route path="/lan" element={<LandingPage />} />
+           <Route path="/hero" element={<HeroSection />} />
+            <Route path="/" element={<LandingPage />} />
             
             <Route path="/admin/dashboard" element={<Dashboard />} />
             <Route path="/admin/users" element={<Dashboard />} />

@@ -1,66 +1,83 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Calendar, Users, Award, CheckCircle } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './LandingPage.css'; // Custom CSS for animations and styles
+import './LandingPage.css';
 import HeroVideo from '../../assets/hero-video.mp4';
-import FeatureImage1 from '../../assets/feature-1.png';
-import FeatureImage2 from '../../assets/feature-2.png';
-import FeatureImage3 from '../../assets/feature-3.png';
-
 
 const LandingPage = () => {
     const [isAnimated, setIsAnimated] = useState(false);
 
     useEffect(() => {
-        setIsAnimated(true); // Trigger animation on mount
+        setIsAnimated(true);
+        // Ensure video autoplay works
+        const video = document.querySelector('.hero-video');
+        if (video) {
+            video.play().catch(function(error) {
+                console.log("Video play failed:", error);
+            });
+        }
     }, []);
 
     return (
         <div className="landing-page">
             {/* Hero Section */}
-            <section className="hero-section">
-                <video autoPlay muted loop className="hero-video">
+            <section className="hero-section position-relative vh-100">
+                <div className="video-overlay"></div>
+                <video 
+                    className="hero-video position-absolute w-100 h-100 object-fit-cover"
+                    autoPlay 
+                    muted 
+                    loop 
+                    playsInline
+                >
                     <source src={HeroVideo} type="video/mp4" />
-                    Your browser does not support the video tag.
                 </video>
-                <div className="hero-content">
-                    <h1 className={`hero-title ${isAnimated ? 'fade-in' : ''}`}>
-                        Effortless Sports Facility Booking & Management
+                <div className="hero-content position-relative z-1 text-center text-white">
+                    <h1 className={`display-3 fw-bold mb-4 ${isAnimated ? 'fade-in' : ''}`}>
+                        Book Your Sports Venue
                     </h1>
-                    <p className={`hero-subtitle ${isAnimated ? 'slide-up' : ''}`}>
-                        Simplify your booking process and maximize facility utilization.
+                    <p className={`lead mb-4 ${isAnimated ? 'slide-up' : ''}`}>
+                        Simple. Fast. Reliable.
                     </p>
-                    <button className={`hero-cta ${isAnimated ? 'scale-in' : ''}`}>
-                        Get Started Free
-                    </button>
+                    <Link 
+                        to="/signup" 
+                        className={`btn btn-primary btn-lg ${isAnimated ? 'scale-in' : ''}`}
+                    >
+                        Get Started <ArrowRight className="ms-2" />
+                    </Link>
                 </div>
             </section>
 
-            {/* Key Features Section */}
-            <section className="features-section">
+            {/* Features Section */}
+            <section className="features-section py-5">
                 <div className="container">
-                    <h2>Key Features</h2>
-                    <div className="row">
-                        <div className="col-md-4 feature-item">
-                            <img src={FeatureImage1} alt="Online Booking" className="feature-image" />
-                            <h3>Online Booking</h3>
-                            <p>Allow users to book facilities online 24/7.</p>
+                    <h2 className="text-center mb-5">Why Choose Us?</h2>
+                    <div className="row g-4">
+                        <div className="col-md-4">
+                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                                <Calendar className="feature-icon text-primary mb-3" size={48} />
+                                <h3 className="h5 mb-3">Easy Booking</h3>
+                                <p className="text-muted">Book your favorite sports venue in just a few clicks</p>
+                            </div>
                         </div>
-                        <div className="col-md-4 feature-item">
-                            <img src={FeatureImage2} alt="Ground Management" className="feature-image" />
-                            <h3>Ground Management</h3>
-                            <p>Easily manage ground availability and schedules.</p>
+                        <div className="col-md-4">
+                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                                <Users className="feature-icon text-primary mb-3" size={48} />
+                                <h3 className="h5 mb-3">Multiple Sports</h3>
+                                <p className="text-muted">Choose from a wide variety of sports facilities</p>
+                            </div>
                         </div>
-                        <div className="col-md-4 feature-item">
-                            <img src={FeatureImage3} alt="User Management" className="feature-image" />
-                            <h3>User Management</h3>
-                            <p>Manage users, roles, and permissions.</p>
+                        <div className="col-md-4">
+                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                                <Award className="feature-icon text-primary mb-3" size={48} />
+                                <h3 className="h5 mb-3">Quality Assured</h3>
+                                <p className="text-muted">All venues are verified for quality standards</p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </section>
-
-            {/* How It Works Section, Testimonials, Pricing, CTA, Footer (Add as needed) */}
-            {/* ... */}
         </div>
     );
 };
