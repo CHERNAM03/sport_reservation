@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+}
+
+.sidebar {
+    flex-shrink: 0; /* Prevent shrinking */
+    width: 200px; /* Adjust width as needed */
+    /* ... other styles ... */
+}
+
+.main-content {
+    flex-grow: 1; /* Take up remaining space */
+    /* ... other styles ... */
+}

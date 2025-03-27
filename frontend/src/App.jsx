@@ -12,6 +12,7 @@ import Inscription from './pages/Inscription';
 import AdminDashboard from './pages/AdminDashboard';
 import AdminTerrains from './adminterrains/AdminTerrains';
 import NotFound from './pages/NotFound';
+import Dashboard from './pages/AdminPanel/Admin';
 
 import './App.css';
 
@@ -29,6 +30,11 @@ function App() {
             <Route path="/inscription" element={<Inscription />} />
             <Route path="/admin" element={<AdminDashboard />} />
             <Route path="/admin/terrains" element={<AdminTerrains />} />
+            <Route path="/admin/dashboard" element={<Dashboard />} />
+            <Route path="/admin/users" element={<Dashboard />} />
+            <Route path="/admin/roles" element={<Dashboard />} />
+            <Route path="/admin/bookings" element={<Dashboard />} />
+            <Route path="/admin/settings" element={<Dashboard />} />
             <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />
