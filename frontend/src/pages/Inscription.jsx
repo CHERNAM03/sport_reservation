@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import './Inscription.css';
 
+
 function Inscription() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -45,7 +46,7 @@ function Inscription() {
       }
       
       setTimeout(() => {
-        navigate('/login');
+        navigate('/connexion');
       }, 2000);
 
     } catch (error) {

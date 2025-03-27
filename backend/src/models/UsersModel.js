@@ -24,7 +24,12 @@ const User = sequelize.define('User', {
   password: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  role: {
+    type: DataTypes.ENUM('admin', 'gestionnaire', 'user'), // Définir les rôles possibles
+    defaultValue: 'user' // Par défaut, un utilisateur est un "user"
   }
+ 
 }, {
   hooks: {
     beforeCreate: async (user) => {

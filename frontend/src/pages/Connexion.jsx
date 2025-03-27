@@ -1,14 +1,13 @@
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import './Connexion.css';
 import React, { useState } from 'react';
 import axios from 'axios';
 
 function Connexion() {
-  
+  const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    username: '',
     email: '',
     password: ''
   });
@@ -31,19 +30,31 @@ function Connexion() {
         }
       });
       console.log('Data submitted successfully:', response.data);
-      // Handle success (e.g., show a success message, redirect to another page, etc.)
+      
+      const { token, role } = response.data;
+
+    // Stocker le token et le rôle dans le localStorage
+    localStorage.setItem('token', token);
+    localStorage.setItem('role', role);
+
+      // Si la connexion est réussie, rediriger vers la page d'accueil
+      navigate('/');
+      
+      // Optionnel : stocker le token dans localStorage si votre API en renvoie un
+      // if (response.data.token) {
+      //   localStorage.setItem('token', response.data.token);
+      // }
     } catch (error) {
       console.error('Error submitting data:', error);
-      // Handle error (e.g., show an error message)
+      // Ici vous pouvez gérer les erreurs, par exemple afficher un message
     }
   };
-
 
   return (
     <div className="connexion-container">
       <h2>Connexion</h2>
       <form className="connexion-form" onSubmit={handleSubmit}>
-      <label htmlFor="email">Email :</label>
+        <label htmlFor="email">Email :</label>
         <input
           type="email"
           id="email"
@@ -52,9 +63,9 @@ function Connexion() {
           onChange={handleChange}
         />
 
-<label htmlFor="password">Mot de passe :</label>
+        <label htmlFor="password">Mot de passe :</label>
         <input
-          type="text"
+          type="password"
           id="password"
           name="password"
           value={formData.password}

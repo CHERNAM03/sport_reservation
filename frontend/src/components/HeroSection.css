@@ -5,12 +5,13 @@
 }
 
 .hero-section {
-  background-image: url('/images/test.jpeg'); /* Chemin mis à jour */
+  background-image: url('/images/terrain.jpeg'); /* Chemin mis à jour */
   background-size: cover;
   background-position: center;
   color: var(--couleur-texte-titre);
   text-align: center;
   padding: 5px 0px;
+  margin: 10px 5px;
 }
 
 .blocks {
