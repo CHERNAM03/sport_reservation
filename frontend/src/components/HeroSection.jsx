@@ -1,51 +1,62 @@
-
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './HeroSection.css'; // Assurez-vous d'avoir les styles personnalisés nécessaires
+import { Calendar, MapPin, Users, ArrowRight } from 'lucide-react';
+import './HeroSection.css';
 
 function HeroSection() {
-  const navigate = useNavigate(); // Hook pour la redirection
+  const navigate = useNavigate();
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
 
   const handleReservationClick = () => {
-    navigate('/reservation'); // Redirige vers la page de réservation
+    navigate('/reservation');
   };
+
   return (
     <div className="hero-section">
-     
-      <div  className= "container text-center">
-        <h1>Bienvenue sur MonTerrain</h1>
-        <p className="lead">Réservez vos terrains de football en quelques clics.</p>
-        <button className="btn btn-success btn-lg" onClick={handleReservationClick}>
-          Réserver maintenant
-        </button>
-      </div>
-      <div className="card text-bg-dark mt-5">
-        <img src="/images/test2.jpeg" className="card-img" alt="Stade" />
-        <div className="card-img-overlay d-flex flex-column justify-content-center">
-          <h5 className="card-title">La communauté des footballeurs connectés.</h5>
-          <p className="card-text">
-            "Avec notre application, l'organisation de tes matchs n'a jamais été aussi simple. Ton terrain, à portée de clic."
-          </p>
-        </div>
-      </div>
-      <div className="container mt-5">
-        <div className="row">
-          <div className="col-md-4">
-            <div className="feature-card">
-              <h3>Réservation simple partout en Ile de France</h3>
-              <p>Réservez votre terrain en quelques clics, 24h/24 et 7j/7.</p>
+      <div className="hero-overlay"></div>
+      <div className={`hero-content container ${isVisible ? 'fade-in' : ''}`}>
+        <div className="row align-items-center min-vh-100">
+          <div className="col-lg-6 text-white">
+            <h1 className="display-3 fw-bold mb-4">
+              Réservez votre terrain de sport en quelques clics
+            </h1>
+            <p className="lead mb-5">
+              Découvrez plus de 2000 terrains de football en Île-de-France. 
+              Réservation simple, rapide et sécurisée.
+            </p>
+            <div className="d-flex gap-3">
+              <button 
+                className="btn btn-primary btn-lg"
+                onClick={handleReservationClick}
+              >
+                Réserver maintenant <ArrowRight className="ms-2" />
+              </button>
+              <button className="btn btn-outline-light btn-lg">
+                En savoir plus
+              </button>
             </div>
           </div>
-          <div className="col-md-4">
-            <div className="feature-card">
-              <h3>Des terrains partout en Ile de France</h3>
-              <p>Plus de 2254 Terrains dans toute la région Ile de France.</p>
-            </div>
-          </div>
-          <div className="col-md-4">
-            <div className="feature-card">
-              <h3>Des terrains partout en Ile de France</h3>
-              <p>Plus de 2254 Terrains dans toute la région Ile de France.</p>
+          <div className="col-lg-6">
+            <div className="hero-stats-grid">
+              <div className="hero-stat-card">
+                <Calendar size={32} />
+                <h3>24/7</h3>
+                <p>Disponibilité</p>
+              </div>
+              <div className="hero-stat-card">
+                <MapPin size={32} />
+                <h3>2000+</h3>
+                <p>Terrains</p>
+              </div>
+              <div className="hero-stat-card">
+                <Users size={32} />
+                <h3>50k+</h3>
+                <p>Utilisateurs</p>
+              </div>
             </div>
           </div>
         </div>

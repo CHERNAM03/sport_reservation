@@ -1,21 +1,63 @@
-
-body {
-  margin: 0;
-  font-family: sans-serif;
- 
-}
-
-.App {
+.app-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 
-.section {
-  padding: 2rem 0; /* Ajoute un espacement vertical aux sections */
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
 }
 
-.container {
-  max-width: 1200px !important; /* Ajustez cette valeur selon vos préférences */
+.main-content {
+    flex: 1;
+    margin-top: 76px; /* Adjust based on your header height */
+    padding: 20px;
+
 }
 
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+}
+
+.main-content {
+  flex: 1;
+  margin-top: 76px; /* Adjust based on your header height */
+  padding: 20px;
+}
+
+footer {
+  margin-top: auto;
+  background-color: #f8f9fa;
+  padding: 20px 0;
+  width: 100%;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 60px;
+    padding: 15px;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .main-content {
+    margin-top: 60px; /* Adjust for mobile header height */
+    padding-bottom: 50px; /* Adjust for mobile footer height */
+  }
+}
