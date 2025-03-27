@@ -4,7 +4,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'; // Import Bootstrap CSS
 import Bookings from './Booking/Bookings';
 import GroundManagement from './GroundManagement';
 import UserForm from './Users/UserForm';
-import AllUsers from './Users/AllUsers';
+import UserManagement  from './Users/UserManagement';
+import FacilityPage from './Users/FacilityPage';
 
 
 
@@ -148,7 +149,7 @@ const Dashboard = () => {
           </div>
         );
       case 'users':
-          return <AllUsers />;
+          return <UserManagement  />;
       case 'roles':
         return (
           <div className="p-4">
@@ -163,6 +164,7 @@ const Dashboard = () => {
         return (
           <div className="p-4">
             <h1>Settings</h1>
+            <FacilityPage />
           </div>
         );
       default:
