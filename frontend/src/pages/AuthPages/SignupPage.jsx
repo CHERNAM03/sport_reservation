@@ -1,6 +1,6 @@
 import React from 'react';
 import './SignupPage.css'; // Import custom CSS
-import illustration from '../assets/feature-1.jpg'; // Replace with your illustration
+import illustration from '../../assets/feature-1.jpg'; // Replace with your illustration
 import { Link } from 'react-router-dom';
 const SignupPage = () => {
     return (
