@@ -1,5 +1,6 @@
 .login-page-tasky {
     display: flex;
+    flex-direction: row; /* Par défaut, les éléments sont disposés en ligne */
     height: 100vh;
     font-family: sans-serif;
 }
@@ -103,7 +104,7 @@ input {
 
 .illustration-container {
     flex: 1;
-    background-color: #ede0ff; /* Light purple background */
+    background-color: #ede0ff;
     border-radius: 20px 0 0 20px;
     display: flex;
     flex-direction: column;
@@ -129,7 +130,33 @@ input {
 .dots span {
     width: 10px;
     height: 10px;
-    background-color: #d0bfff; /* Lighter purple */
+    background-color: #d0bfff;
     border-radius: 50%;
     margin: 0 0.5rem;
+}
+
+/* Requêtes média pour la responsivité */
+
+@media (max-width: 768px) {
+    .login-page-tasky {
+        flex-direction: column; /* Sur les écrans plus petits, les éléments sont disposés en colonne */
+    }
+
+    .illustration-container {
+        border-radius: 0 0 20px 20px; /* Ajuste les bordures pour la disposition en colonne */
+    }
+}
+
+@media (max-width: 480px) {
+    .login-form-container, .illustration-container {
+        padding: 1rem; /* Réduit le padding pour les petits écrans */
+    }
+
+    .welcome-heading {
+        font-size: 1.5rem; /* Réduit la taille de la police */
+    }
+
+    .or-continue span {
+        font-size: 0.9rem; /* Réduit la taille de la police pour "ou continuer" */
+    }
 }

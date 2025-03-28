@@ -35,10 +35,10 @@ const LandingPage = () => {
                 </video>
                 <div className="hero-content position-relative z-1 text-center text-white">
                     <h1 className={`display-3 fw-bold mb-4 ${isAnimated ? 'fade-in' : ''}`}>
-                        Book Your Sports Venue
+                        Bienvenue sue MonTerrain
                     </h1>
                     <p className={`lead mb-4 ${isAnimated ? 'slide-up' : ''}`}>
-                        Simple. Fast. Reliable.
+                        Reserver votre terrain de football en quelques clics.
                     </p>
                     <Link 
                         to="/signup" 

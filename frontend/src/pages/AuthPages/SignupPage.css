@@ -1,5 +1,6 @@
 .signup-page-tasky {
     display: flex;
+    flex-direction: row; /* Par défaut, les éléments sont disposés en ligne */
     height: 100vh;
     font-family: sans-serif;
 }
@@ -70,7 +71,7 @@ input {
 
 .illustration-container {
     flex: 1;
-    background-color: #ede0ff; /* Light purple background */
+    background-color: #ede0ff;
     border-radius: 20px 0 0 20px;
     display: flex;
     flex-direction: column;
@@ -96,7 +97,30 @@ input {
 .dots span {
     width: 10px;
     height: 10px;
-    background-color: #d0bfff; /* Lighter purple */
+    background-color: #d0bfff;
     border-radius: 50%;
     margin: 0 0.5rem;
+}
+
+/* Requetes media pour la responsivité */
+
+@media (max-width: 768px) {
+    .signup-page-tasky {
+        flex-direction: column; /* Sur les écrans plus petits, les éléments sont disposés en colonne */
+    }
+
+    .illustration-container {
+        border-radius: 0 0 20px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .signup-form-container, .illustration-container {
+        padding: 1rem;
+    }
+
+    .signup-heading {
+        font-size: 1.5rem;
+    }
 }
