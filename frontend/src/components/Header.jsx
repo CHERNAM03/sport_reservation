@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { ChevronDown, Search, User, Menu } from 'lucide-react';
+import { Dropdown } from 'bootstrap';
 import './Header.css';
 
 function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  useEffect(() => {
+    // Initialize all dropdowns
+    const dropdownElements = document.querySelectorAll('.dropdown-toggle');
+    dropdownElements.forEach(element => {
+      new Dropdown(element);
+    });
+  }, []);
 
   return (
     <header className="header-main">
@@ -42,7 +50,7 @@ function Header() {
                   <li><Link className="dropdown-item" to="/sports/basketball">Basketball</Link></li>
                   <li><Link className="dropdown-item" to="/sports/tennis">Tennis</Link></li>
                   <li><hr className="dropdown-divider" /></li>
-                  <li><Link className="dropdown-item" to="/sports/all">Tous les sports</Link></li>
+                  <li><Link className="dropdown-item" to="/grounds">Tous les sports</Link></li>
                 </ul>
               </li>
 

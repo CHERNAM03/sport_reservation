@@ -1,10 +1,13 @@
 import React from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import NotFound from './pages/NotFound';
 import Dashboard from './pages/AdminPanel/Admin';
 import LandingPage from './pages/UserPanle/LandingPage';
+import GroundsPage from './pages/UserPanle/GroundsPage';
 
 import './App.css';
 
@@ -21,6 +24,7 @@ function App() {
             <Route path="/admin/roles" element={<Dashboard />} />
             <Route path="/admin/bookings" element={<Dashboard />} />
             <Route path="/admin/settings" element={<Dashboard />} />
+            <Route path="/grounds" element={<GroundsPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           
