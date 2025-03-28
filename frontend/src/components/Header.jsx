@@ -102,6 +102,8 @@ function Header() {
                   <li><Link className="dropdown-item" to="/reservations">Mes réservations</Link></li>
                   <li><hr className="dropdown-divider" /></li>
                   <li><Link className="dropdown-item" to="/admin">Admin Panel</Link></li>
+                  <li><hr className="dropdown-divider" /></li>
+                  <li><Link className="dropdown-item" to="/login">login</Link></li>
                   <li><Link className="dropdown-item" to="/logout">Déconnexion</Link></li>
                 </ul>
               </div>

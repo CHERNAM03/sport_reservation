@@ -1,0 +1,135 @@
+.login-page-tasky {
+    display: flex;
+    height: 100vh;
+    font-family: sans-serif;
+}
+
+.login-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.tasky-logo {
+    width: 100px;
+    margin-bottom: 2rem;
+}
+
+.welcome-heading {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.login-details {
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    margin-bottom: 0.5rem;
+}
+
+input {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.forgot-password {
+    text-align: right;
+    margin-bottom: 1rem;
+    color: #007bff;
+    text-decoration: none;
+}
+
+.sign-in-button {
+    background-color: #007bff;
+    color: white;
+    padding: 1rem 2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.or-continue {
+    display: flex;
+    align-items: center;
+    margin: 2rem 0;
+    color: #999;
+}
+
+.or-continue hr {
+    flex: 1;
+    border: none;
+    border-top: 1px solid #ddd;
+}
+
+.or-continue span {
+    padding: 0 1rem;
+}
+
+.google-login-button {
+    background-color: #fff;
+    color: #333;
+    padding: 1rem 2rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.signup-link {
+    text-align: center;
+    margin-top: 2rem;
+    color: #666;
+}
+
+.signup-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.illustration-container {
+    flex: 1;
+    background-color: #ede0ff; /* Light purple background */
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.tasky-illustration {
+    max-width: 100%;
+    margin-bottom: 2rem;
+}
+
+.illustration-text {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.dots {
+    display: flex;
+}
+
+.dots span {
+    width: 10px;
+    height: 10px;
+    background-color: #d0bfff; /* Lighter purple */
+    border-radius: 50%;
+    margin: 0 0.5rem;
+}

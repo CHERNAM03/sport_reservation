@@ -8,6 +8,8 @@ import NotFound from './pages/NotFound';
 import Dashboard from './pages/AdminPanel/Admin';
 import LandingPage from './pages/UserPanle/LandingPage';
 import GroundsPage from './pages/UserPanle/GroundsPage';
+import AuthP from './pages/AuthPage';
+import SignupPage from './pages/SignupPage';
 
 import './App.css';
 
@@ -25,6 +27,9 @@ function App() {
             <Route path="/admin/bookings" element={<Dashboard />} />
             <Route path="/admin/settings" element={<Dashboard />} />
             <Route path="/grounds" element={<GroundsPage />} />
+            <Route path="/login" element={<AuthP />} />
+            <Route path="/signup" element={<SignupPage />} />
+
             <Route path="*" element={<NotFound />} />
           </Routes>
           
