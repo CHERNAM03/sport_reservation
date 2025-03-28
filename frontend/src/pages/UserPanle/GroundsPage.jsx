@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import './GroundsPage.css'; // Import custom CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
+import GroundDetail from './GroundDetail';
+import { Link } from 'react-router-dom'; // Import Link
 
 const GroundsPage = () => {
     const [grounds, setGrounds] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
+    
 
     useEffect(() => {
         // Simulate fetching grounds data from an API
@@ -19,7 +22,7 @@ const GroundsPage = () => {
             { id: 11, name: 'Central Park Football Field', postalCode: '10001', area: 'Manhattan', description: 'A beautiful field in the heart of the city.', image: 'https://picsum.photos/200/300', address: '123 Park Ave, New York' },
             { id: 12, name: 'Stade de France Tennis Courts', postalCode: '93200', area: 'Saint-Denis', description: 'Professional tennis courts with excellent facilities.', image: 'https://picsum.photos/200/300', address: '10 Rue de la Légion d\'Honneur, Saint-Denis' },
             { id: 13, name: 'Local Arena Basketball', postalCode: '10001', area: 'Manhattan', description: 'Great place for basketball lovers.', image: 'https://farm2.staticflickr.com/1533/26541536141_41abe98db3_z_d.jpg', address: '456 Main St, New York' },
-            { id: 4, name: 'Suburb Football Field', postalCode: '75001', area: 'Paris 1er', description: 'Quiet football field near a park.', image: '/images/ground4.jpg', address: '789 Rue de Rivoli, Paris 1er'},
+            { id: 14, name: 'Suburb Football Field', postalCode: '75001', area: 'Paris 1er', description: 'Quiet football field near a park.', image: '/images/ground4.jpg', address: '789 Rue de Rivoli, Paris 1er'},
         ];
         setGrounds(fetchedGrounds);
     }, []);
@@ -52,6 +55,14 @@ const GroundsPage = () => {
         ground.name.toLowerCase().includes(searchTerm.toLowerCase())
     ) : grounds;
 
+    const handleGroundClick = (ground) => {
+        setSelectedGround(ground);
+    };
+
+    const handleCloseDetail = () => {
+        setSelectedGround(null);
+    };
+
     return (
         <div className="grounds-page">
             <div className="container">
@@ -76,12 +87,14 @@ const GroundsPage = () => {
 
                 <div className="terrain-list">
                     {filteredGrounds.map((terrain) => (
-                        <div key={terrain.id} className="terrain-item">
+                    <Link key={terrain.id} to={`/ground/${terrain.id}`} className="terrain-item-link">
+                        <div className="terrain-item">
                             <img src={terrain.image} alt={terrain.name} className="terrain-image" />
                             <h3>{terrain.name}</h3>
                             <p>{terrain.description}</p>
                             <p>Adresse : {terrain.address}</p>
                         </div>
+                    </Link>
                     ))}
                 </div>
             </div>
