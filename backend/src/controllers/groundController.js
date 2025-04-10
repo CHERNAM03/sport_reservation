@@ -1,22 +1,78 @@
 const Terrain = require('../models/TerrainsModel');
 
-// Add a new terrain
-const addTerrain = async (req, res) => {
-  try {
-    const { name, description, address, image } = req.body;
-    res.status(201).json({ message: 'Une fjlsjflsdjl est survenue lors de l\'ajout du terrain.' });
-    // Validate required fields
-    if (!name || !description || !address) {
-      return res.status(400).json({ message: 'Tous les champs requis doivent être remplis.' });
-    }
 
-    // Create the terrain
-    const newTerrain = await Terrain.create({ name, description, address, image });
-    res.status(201).json(newTerrain);
+// Créer un nouveau terrain
+exports.createTerrain = async (req, res) => {
+  try {
+    const terrain = await Terrain.create(req.body);
+    res.status(201).json(terrain);
   } catch (error) {
-    console.error('Error adding terrain:', error);
-    res.status(500).json({ message: 'Une erreur est survenue lors de l\'ajout du terrain.' });
+    res.status(400).json({ message: error.message });
   }
 };
 
-module.exports = { addTerrain };
+// Récupérer tous les terrains
+exports.getAllTerrains = async (req, res) => {
+  try {
+    const terrains = await Terrain.findAll();
+    res.json(terrains);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Récupérer un terrain par ID
+exports.getTerrainById = async (req, res) => {
+  try {
+    const terrain = await Terrain.findByPk(req.params.id);
+    if (terrain) {
+      res.json(terrain);
+    } else {
+      res.status(404).json({ message: 'Terrain non trouvé' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Mettre à jour un terrain
+exports.updateTerrain = async (req, res) => {
+  try {
+    const [updated] = await Terrain.update(req.body, {
+      where: { id: req.params.id }
+    });
+    if (updated) {
+      const updatedTerrain = await Terrain.findByPk(req.params.id);
+      res.json(updatedTerrain);
+    } else {
+      res.status(404).json({ message: 'Terrain non trouvé' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Supprimer un terrain
+exports.deleteTerrain = async (req, res) => {
+  try {
+    const deleted = await Terrain.destroy({
+      where: { id: req.params.id }
+    });
+    if (deleted) {
+      res.status(204).send(); // No content
+    } else {
+      res.status(404).json({ message: 'Terrain non trouvé' });
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+// Récupérer les terrains disponibles
+exports.getAvailableTerrains = async (req, res) => {
+  try {
+    const terrains = await Terrain.findAll({ where: { availability: true } });
+    res.json(terrains);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

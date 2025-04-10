@@ -64,6 +64,14 @@
 .terrain-item p {
     padding: 0 1rem;
 }
+.terrain-item-link {
+    text-decoration: none;
+    color: inherit; /* Inherit color from parent */
+}
+.terrain-item-link:hover {
+    text-decoration: underline; /* Ajoute un soulignement au survol */
+    color: var(--link-hover-color, #0056b3); /* Change la couleur au survol, avec fallback */
+}
 
 /* Responsive Grid for 3-4 cards per row */
 @media (min-width: 1200px) {

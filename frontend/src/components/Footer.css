@@ -39,8 +39,12 @@
 .social-icons a:hover {
   color: white;
   transform: translateY(-3px); /* Hover effect for social icons */
-}
 
+}
+.footer-copyright.border-top {
+  border-top: 1px solid #ddd; /* Couleur et épaisseur de la bordure */
+  padding-top: 10px; /* Ajoute un peu d'espace entre le trait et le texte */
+}
 /* Responsive Design */
 @media (max-width: 768px) {
   .text-center {

@@ -1,0 +1,99 @@
+/* Conteneur principal */
+.add-avis-form {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titre */
+  .add-avis-form h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Messages de succès et d'erreur */
+  .add-avis-form p {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  
+  .add-avis-form p[style*="color: green"] {
+    color: #28a745;
+  }
+  
+  .add-avis-form p[style*="color: red"] {
+    color: #dc3545;
+  }
+  
+  /* Champs du formulaire */
+  .add-avis-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #555;
+  }
+  
+  .add-avis-form input,
+  .add-avis-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    box-sizing: border-box;
+  }
+  
+  .add-avis-form input:focus,
+  .add-avis-form textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 4px rgba(0, 123, 255, 0.25);
+  }
+  
+  /* Bouton de soumission */
+  .add-avis-form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .add-avis-form button:hover {
+    background-color: #0056b3;
+  }
+  
+  .add-avis-form button:disabled {
+    background-color: #6c757d;
+    cursor: not-allowed;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .add-avis-form {
+      padding: 15px;
+    }
+  
+    .add-avis-form h3 {
+      font-size: 18px;
+    }
+  
+    .add-avis-form input,
+    .add-avis-form textarea {
+      font-size: 13px;
+    }
+  
+    .add-avis-form button {
+      font-size: 14px;
+    }
+  }

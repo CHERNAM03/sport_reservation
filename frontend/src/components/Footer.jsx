@@ -10,21 +10,21 @@ function Footer() {
                         <img src="/images/logo.png" alt="MonTerrain" className="footer-logo img-fluid mb-3" width="150" />
                         <p className="footer-text">Trouvez et réservez facilement votre terrain de football.</p>
                     </div>
-                    <div className="col-12 col-md-4">
-                        <h5 className="footer-heading mb-3">Liens rapides</h5>
-                        <ul className="list-unstyled footer-links">
+                    <div className="col-12 col-md-4 text-center text-md-start">
+                       <h5 className="footer-heading mb-3">Liens rapides</h5>
+                         <ul className="list-unstyled footer-links">
                             <li><a href="/" className="footer-link">À propos</a></li>
                             <li><a href="/terrain" className="footer-link">Nos terrains</a></li>
                             <li><a href="/contact" className="footer-link">Contact</a></li>
                             <li><a href="#" className="footer-link">FAQ</a></li>
-                        </ul>
+                         </ul>
                     </div>
                     <div className="col-12 col-md-4">
-                        <h5 className="footer-heading mb-3">Suivez-nous</h5>
+                    <h5 className="footer-heading mb-3 text-center text-md-start">Suivez-nous</h5>
                         <div className="social-icons d-flex justify-content-center justify-content-md-start gap-3">
                             <a href="https://facebook.com" className="social-icon" aria-label="Facebook">
                                 <i className="bi bi-facebook"></i>
-                            </a>
+                              </a>
                             <a href="https://youtube.com" className="social-icon" aria-label="YouTube">
                                 <i className="bi bi-youtube"></i>
                             </a>
@@ -36,11 +36,11 @@ function Footer() {
                             </a>
                         </div>
                     </div>
-                    <div className="col-12">
-                        <p className="footer-copyright mb-0">
-                            © 2025 MonTerrain. Tous droits réservés.
+                    <div className="col-12 d-flex justify-content-center">
+                         <p className="footer-copyright mb-0 text-center border-top">
+                           © 2025 MonTerrain. Tous droits réservés.
                         </p>
-                    </div>
+                     </div>
                 </div>
             </div>
         </footer>

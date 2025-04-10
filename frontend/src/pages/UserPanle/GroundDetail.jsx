@@ -1,17 +1,75 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import UserReviewForm from '../AdminPanel/Users/UserReviewForm';
 import './GroundDetail.css';
+import api from '../../api/api';
 
 const GroundDetail = () => {
-    const { groundId } = useParams();
-    const navigate = useNavigate();
-    const [ground, setGround] = useState(null);
-    const [reviews, setReviews] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
+  const { groundId } = useParams();
+  const navigate = useNavigate();
+  const [ground, setGround] = useState(null);
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [rating, setRating] = useState('');
+  const [comment, setComment] = useState('');
+  const [message, setMessage] = useState('');
 
-    useEffect(() => {
+  // Charger les détails du terrain et les avis
+  useEffect(() => {
+    const fetchGroundDetail = async () => {
+      try {
+        const groundResponse = await api.get(`/api/grounds/${groundId}`); // Endpoint pour récupérer les détails d'un terrain
+        setGround(groundResponse.data);
+
+        const reviewsResponse = await api.get(`/api/avis/${groundId}`); // Endpoint pour récupérer les avis
+        setReviews(reviewsResponse.data);
+
+        setLoading(false);
+      } catch (err) {
+        setError(err.response?.data?.message || 'Erreur lors de la récupération des données.');
+        setLoading(false);
+      }
+    };
+
+    fetchGroundDetail();
+  }, [groundId]);
+
+  // Soumettre un avis
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setMessage('');
+    setError('');
+
+    try {
+      await api.post('/avis', {
+        groundId,
+        rating,
+        comment,
+      });
+
+      setMessage('Avis ajouté avec succès.');
+      setRating('');
+      setComment('');
+
+      // Recharger les avis après l'ajout
+      const updatedReviews = await api.get(`/avis/${groundId}`);
+      setReviews(updatedReviews.data);
+    } catch (err) {
+      setError(err.response?.data?.message || 'Erreur lors de l\'ajout de l\'avis.');
+    }
+  };
+
+  const handleClose = () => {
+    navigate('/grounds');
+  };
+
+  if (loading) return <div className="loading">Chargement...</div>;
+  if (error) return <div className="error">{error}</div>;
+  if (!ground) return <div className="not-found">Terrain introuvable</div>;
+
+  
+
+  /*   useEffect(() => {
         const fetchGroundDetails = async () => {
             try {
                 setLoading(true);
@@ -45,60 +103,79 @@ const GroundDetail = () => {
         };
 
         fetchGroundDetails();
-    }, [groundId]);
+    }, [groundId]); 
 
-    const handleReviewSubmitted = (newReview) => {
+     const handleReviewSubmitted = (newReview) => {
         setReviews([...reviews, newReview]);
-    };
-
-    const handleClose = () => {
-        navigate('/grounds');
-    };
-
-    if (loading) return <div className="loading">Loading...</div>;
-    if (error) return <div className="error">{error}</div>;
-    if (!ground) return <div className="not-found">Ground not found</div>;
+    };*/
 
     return (
         <div className="ground-detail-page">
-            <div className="ground-detail-content">
-                <button className="close-button" onClick={handleClose}>
-                    &times;
-                </button>
-                <div className="ground-header">
-                    <img src={ground.image} alt={ground.name} className="ground-detail-image" />
-                    <div className="ground-info">
-                        <h1>{ground.name}</h1>
-                        <p className="area-code">{ground.area} - {ground.postalCode}</p>
-                        <p className="description">{ground.description}</p>
-                        <p className="address">
-                            <strong>Address:</strong> {ground.address}
-                        </p>
-                    </div>
-                </div>
-
-                <div className="reviews-section">
-                    <h2>Reviews</h2>
-                    {reviews.length === 0 ? (
-                        <p>No reviews yet. Be the first to review!</p>
-                    ) : (
-                        <div className="reviews-list">
-                            {reviews.map((review, index) => (
-                                <div key={index} className="review-item">
-                                    <div className="rating">Rating: {review.rating}/5</div>
-                                    <p className="review-text">{review.text}</p>
-                                    <div className="review-date">
-                                        {new Date(review.date).toLocaleDateString()}
-                                    </div>
-                                </div>
-                            ))}
-                        </div>
-                    )}
-                    <UserReviewForm facilityId={ground.id} onReviewSubmitted={handleReviewSubmitted} />
-                </div>
+          <div className="ground-detail-content">
+            <button className="close-button" onClick={handleClose}>
+              &times;
+            </button>
+            <div className="ground-header">
+              <img src={ground.image} alt={ground.name} className="ground-detail-image" />
+              <div className="ground-info">
+                <h1>{ground.name}</h1>
+                <p className="area-code">{ground.area} - {ground.postalCode}</p>
+                <p className="description">{ground.description}</p>
+                <p className="address">
+                  <strong>Adresse :</strong> {ground.address}
+                </p>
+              </div>
             </div>
+    
+            <div className="reviews-section">
+              <h2>Avis</h2>
+              {reviews.length === 0 ? (
+                <p>Aucun avis pour ce terrain. Soyez le premier à laisser un avis !</p>
+              ) : (
+                <div className="reviews-list">
+                  {reviews.map((review, index) => (
+                    <div key={index} className="review-item">
+                      <div className="rating">Note : {review.rating}/5</div>
+                      <p className="review-text">{review.comment}</p>
+                      <div className="review-date">
+                        {new Date(review.createdAt).toLocaleDateString()}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
+    
+              <h2>Laisser un Avis</h2>
+              {message && <p style={{ color: 'green' }}>{message}</p>}
+              {error && <p style={{ color: 'red' }}>{error}</p>}
+              <form onSubmit={handleSubmit}>
+                <div>
+                  <label>Note (1-5) :</label>
+                  <input
+                    type="number"
+                    value={rating}
+                    onChange={(e) => setRating(e.target.value)}
+                    min="1"
+                    max="5"
+                    required
+                  />
+                </div>
+                <div>
+                  <label>Commentaire :</label>
+                  <textarea
+                    value={comment}
+                    onChange={(e) => setComment(e.target.value)}
+                    required
+                  />
+                </div>
+                <button type="submit">Envoyer</button>
+              </form>
+            </div>
+          </div>
         </div>
-    );
-};
-
-export default GroundDetail;
+      );
+    };
+    
+    export default GroundDetail;
+      
+    

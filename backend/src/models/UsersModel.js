@@ -46,4 +46,22 @@ User.prototype.validatePassword = async function(password) {
   return await bcrypt.compare(password, this.password);
 };
 
+// Add instance method to generate JWT
+User.prototype.generateAuthToken = function() {
+  const payload = {
+    id: this.id,
+    username: this.username,
+    email: this.email,
+    role: this.role
+  };
+
+  // Générer un token avec une clé secrète
+  const token = jwt.sign(payload, process.env.JWT_SECRET || 'your_jwt_secret_key', {
+    expiresIn: '24h' // Durée de validité du token
+  });
+
+  return token;
+};
+
+
 module.exports = User;

@@ -1,0 +1,15 @@
+.terrain-page {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .terrain-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  .terrain-description {
+    font-size: 16px;
+    color: #555;
+  }

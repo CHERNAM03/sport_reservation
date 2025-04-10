@@ -1,16 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import './GroundsPage.css'; // Import custom CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import GroundDetail from './GroundDetail';
 import { Link } from 'react-router-dom'; // Import Link
+import api from '../../api/api'; 
 
 const GroundsPage = () => {
     const [grounds, setGrounds] = useState([]);
     const [searchTerm, setSearchTerm] = useState('');
     const [suggestions, setSuggestions] = useState([]);
-    
+    const [error, setError] = useState('');
 
+    const role = localStorage.getItem('userRole'); // Récupérer le rôle de l'utilisateur
     useEffect(() => {
+        const fetchGrounds = async () => {
+          try {
+             const response = await api.get('/grounds'); // Endpoint pour récupérer les terrains
+            setGrounds(response.data); 
+          } catch (err) {
+            setError(err.response?.data?.message || 'Erreur lors de la récupération des terrains.');
+          }
+        };
+        fetchGrounds();
+      }, []);
+    
+      if (error) {
+        return <p style={{ color: 'red' }}>{error}</p>;
+      }
+    
+    /* useEffect(() => {
         // Simulate fetching grounds data from an API
         const fetchedGrounds = [
             { id: 1, name: 'Central Park Football Field', postalCode: '10001', area: 'Manhattan', description: 'A beautiful field in the heart of the city.', image: 'https://picsum.photos/200', address: '123 Park Ave, New York' },
@@ -26,7 +43,7 @@ const GroundsPage = () => {
         ];
         setGrounds(fetchedGrounds);
     }, []);
-
+ */
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchTerm(value);
@@ -55,14 +72,6 @@ const GroundsPage = () => {
         ground.name.toLowerCase().includes(searchTerm.toLowerCase())
     ) : grounds;
 
-    const handleGroundClick = (ground) => {
-        setSelectedGround(ground);
-    };
-
-    const handleCloseDetail = () => {
-        setSelectedGround(null);
-    };
-
     return (
         <div className="grounds-page">
             <div className="container">
@@ -87,16 +96,33 @@ const GroundsPage = () => {
 
                 <div className="terrain-list">
                     {filteredGrounds.map((terrain) => (
-                    <Link key={terrain.id} to={`/ground/${terrain.id}`} className="terrain-item-link">
-                        <div className="terrain-item">
-                            <img src={terrain.image} alt={terrain.name} className="terrain-image" />
-                            <h3>{terrain.name}</h3>
-                            <p>{terrain.description}</p>
-                            <p>Adresse : {terrain.address}</p>
-                        </div>
-                    </Link>
+                        <Link key={terrain.id} to={`/ground/${terrain.id}`} className="terrain-item-link">
+                            <div className="terrain-item">
+                                <img src={terrain.image} alt={terrain.name} className="terrain-image" />
+                                <h3>{terrain.name}</h3>
+                                <p>{terrain.description}</p>
+                                <p>Adresse : {terrain.address}</p>
+                            </div>
+                        </Link>
                     ))}
                 </div>
+
+                {/* Afficher des fonctionnalités spécifiques au rôle */}
+                {role === 'gestionnaire' && (
+                    <div className="manager-actions">
+                        <h2>Gestionnaire Actions</h2>
+                        <button className="btn btn-primary">Add New Ground</button>
+                        <button className="btn btn-secondary">Edit Ground</button>
+                    </div>
+                )}
+
+                {role === 'admin' && (
+                    <div className="admin-actions">
+                        <h2>Admin Actions</h2>
+                        <button className="btn btn-danger">Manage Users</button>
+                        <button className="btn btn-warning">Manage Grounds</button>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -2,12 +2,29 @@ const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database'); // Import your Sequelize instance
 
 const Terrain = sequelize.define('Terrain', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false, // Name is required
     validate: {
       notEmpty: { msg: 'Le nom du terrain est requis.' }
     }
+  },
+  location: {
+    type: DataTypes.STRING,
+    allowNull: false // Location is required
+  },
+  price: {
+    type: DataTypes.FLOAT,
+    allowNull: false // Price is required
+  },
+  availability: {
+    type: DataTypes.BOOLEAN,
+    defaultValue: true // Default availability is true
   },
   description: {
     type: DataTypes.TEXT,

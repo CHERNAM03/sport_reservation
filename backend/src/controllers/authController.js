@@ -6,23 +6,26 @@ const authController = {
     signup: async (req, res) => {
         try {
             const { username, email, password } = req.body;
-
+    
+            // Hachez le mot de passe avant de le sauvegarder
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
+    
             const user = await User.create({
                 username,
                 email,
-                password
+                password: hashedPassword // Sauvegardez le mot de passe haché
             });
-
+    
             const token = jwt.sign(
                 { id: user.id },
                 process.env.JWT_SECRET,
-                { expiresIn: '1h' }
+                { expiresIn: '24h' }
             );
-
+    
             return res.status(201).json({
                 username: user.username,
                 email: user.email,
-                password: user.password,
                 message: 'User created successfully',
                 token
             });
@@ -42,29 +45,34 @@ const authController = {
             if (!user) {
                 return res.status(404).json({ message: 'User not found' });
             }
-
+            console.log('Mot de passe en clair :', password);
+            console.log('Mot de passe haché dans la base de données :', user.password);
             const isValidPassword = await bcrypt.compare(password, user.password);
             if (!isValidPassword) {
                 return res.status(401).json({ message: 'Invalid password' });
             }
 
             const token = jwt.sign(
-                { id: user.id },
+                { id: user.id},
                 process.env.JWT_SECRET,
-                { expiresIn: '1h' }
+                { expiresIn: '24h' }
             );
 
             res.json({
                 message: 'Login successful',
-                token
+                token,
+                user: {
+                    id: user.id,
+                    username: user.username,
+                    email: user.email,
+                    role: user.role
+                }
             });
         } catch (error) {
-            res.status(500).json({
-                message: 'Error logging in',
-                error: error.message
-            });
+            console.error('Error during login:', error);
+            res.status(500).json({ message: 'An error occurred during login' });
         }
-    }
-};
+        }
+    };
 
 module.exports = authController;

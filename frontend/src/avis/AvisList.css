@@ -1,0 +1,82 @@
+/* Conteneur principal */
+.avis-list {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Titre */
+  .avis-list h3 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Message d'absence d'avis */
+  .avis-list p {
+    text-align: center;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Liste des avis */
+  .avis-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .avis-list li {
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .avis-list li:last-child {
+    margin-bottom: 0;
+  }
+  
+  /* Note et commentaire */
+  .avis-list strong {
+    color: #007bff;
+  }
+  
+  .avis-list .rating {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .avis-list .comment {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .avis-list {
+      padding: 15px;
+    }
+  
+    .avis-list h3 {
+      font-size: 18px;
+    }
+  
+    .avis-list li {
+      padding: 10px;
+    }
+  
+    .avis-list .rating {
+      font-size: 14px;
+    }
+  
+    .avis-list .comment {
+      font-size: 13px;
+    }
+  }
