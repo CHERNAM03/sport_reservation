@@ -1,21 +1,28 @@
 const User = require('../models/UsersModel');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
+const { col } = require('sequelize');
 
 const authController = {
     signup: async (req, res) => {
         try {
+
+
             const { username, email, password, role = 'user' } = req.body;
     
             // Hachez le mot de passe avant de le sauvegarder
-            const salt = await bcrypt.genSalt(10);
-            const hashedPassword = await bcrypt.hash(password, salt);
+            // const salt = await bcrypt.genSalt(10);
+            // const hashedPassword = await bcrypt.hash(password, salt);
+            const hashedPassword = await bcrypt.hash(password);
+            console.log('Mot de passe haché :', hashedPassword);
+            console.log('Mot de passe en clair :', password);
+            colnsole.log('Email :', email);
+            console.log('Nom d\'utilisateur :', username);
     
             const user = await User.create({
                 username,
                 email,
-                password: hashedPassword,
-                role // Assurez-vous que le rôle est valide
+                password: hashedPassword
             });
     
             const token = jwt.sign(

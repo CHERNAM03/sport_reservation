@@ -19,8 +19,8 @@ const LoginPageTasky = () => {
             password,
         };
 
-        const requestBodyJSON = JSON.stringify(requestBody);
-        const contentLength = requestBodyJSON.length.toString();
+        // const requestBodyJSON = JSON.stringify(requestBody);
+        // const contentLength = requestBodyJSON.length.toString();
 
         try {
             const response = await axios.post(
@@ -29,7 +29,7 @@ const LoginPageTasky = () => {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Content-Length': contentLength, // Ajout manuel (généralement inutile avec axios)
+                        // 'Content-Length': contentLength, // Ajout manuel (généralement inutile avec axios)
                     },
                 }
             );
