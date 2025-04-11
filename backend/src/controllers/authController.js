@@ -5,8 +5,6 @@ const { col } = require('sequelize');
 
 const authController = {
     signup: async (req, res) => {
-
-        console.log('Requête reçue dans le contrôleur signup :', req.body);
         try {
             const { username, email, password } = req.body;
     
@@ -21,7 +19,7 @@ const authController = {
             const user = await User.create({
                 username,
                 email,
-                password: hashedPassword,
+                password: password,
                 role: 'user' // Par défaut, le rôle est "user"
             });
     
