@@ -5,24 +5,24 @@ const { col } = require('sequelize');
 
 const authController = {
     signup: async (req, res) => {
+
+        console.log('Requête reçue dans le contrôleur signup :', req.body);
         try {
-
-
-            const { username, email, password, role = 'user' } = req.body;
+            const { username, email, password } = req.body;
     
             // Hachez le mot de passe avant de le sauvegarder
-            // const salt = await bcrypt.genSalt(10);
-            // const hashedPassword = await bcrypt.hash(password, salt);
-            const hashedPassword = await bcrypt.hash(password);
+            const salt = await bcrypt.genSalt(10);
+            const hashedPassword = await bcrypt.hash(password, salt);
             console.log('Mot de passe haché :', hashedPassword);
             console.log('Mot de passe en clair :', password);
-            colnsole.log('Email :', email);
+            console.log('Email :', email);
             console.log('Nom d\'utilisateur :', username);
     
             const user = await User.create({
                 username,
                 email,
-                password: hashedPassword
+                password: hashedPassword,
+                role: 'user' // Par défaut, le rôle est "user"
             });
     
             const token = jwt.sign(
@@ -39,8 +39,9 @@ const authController = {
                 token
             });
         } catch (error) {
+            console.error('Error creating user:', error);
             res.status(400).json({
-                message: 'Error creating user',
+                message: 'Error creating user in Signup controller',
                 error: error.message
             });
         }
