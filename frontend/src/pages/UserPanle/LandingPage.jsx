@@ -35,7 +35,7 @@ const LandingPage = () => {
                 </video>
                 <div className="hero-content position-relative z-1 text-center text-white">
                     <h1 className={`display-3 fw-bold mb-4 ${isAnimated ? 'fade-in' : ''}`}>
-                        Bienvenue sue MonTerrain
+                        Bienvenue sur MonTerrain
                     </h1>
                     <p className={`lead mb-4 ${isAnimated ? 'slide-up' : ''}`}>
                         Reserver votre terrain de football en quelques clics.
@@ -50,34 +50,39 @@ const LandingPage = () => {
             </section>
 
             {/* Features Section */}
-            <section className="features-section py-5">
-                <div className="container">
-                    <h2 className="text-center mb-5">Why Choose Us?</h2>
-                    <div className="row g-4">
-                        <div className="col-md-4">
-                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
-                                <Calendar className="feature-icon text-primary mb-3" size={48} />
-                                <h3 className="h5 mb-3">Easy Booking</h3>
-                                <p className="text-muted">Book your favorite sports venue in just a few clicks</p>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
-                                <Users className="feature-icon text-primary mb-3" size={48} />
-                                <h3 className="h5 mb-3">Multiple Sports</h3>
-                                <p className="text-muted">Choose from a wide variety of sports facilities</p>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
-                                <Award className="feature-icon text-primary mb-3" size={48} />
-                                <h3 className="h5 mb-3">Quality Assured</h3>
-                                <p className="text-muted">All venues are verified for quality standards</p>
-                            </div>
-                        </div>
-                    </div>
+         {/* Features Section */}
+<section className="features-section py-5">
+     {/* Section Title */}
+     <div className="text-center mb-5">
+            <h2>Pourquoi nous choisir ?</h2>
+        </div>
+    <div className="container">
+       
+        <div className="row g-4">
+            <div className="col-md-4">
+                <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                    <Calendar className="feature-icon text-primary mb-3" size={48} />
+                    <h3 className="h5 mb-3">Réservation facile</h3>
+                    <p className="text-muted">Réservez votre lieu sportif préféré en quelques clics</p>
                 </div>
-            </section>
+            </div>
+            <div className="col-md-4">
+                <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                    <Users className="feature-icon text-primary mb-3" size={48} />
+                    <h3 className="h5 mb-3">Sports variés</h3>
+                    <p className="text-muted">Choisissez parmi une large gamme d'installations sportives</p>
+                </div>
+            </div>
+            <div className="col-md-4">
+                <div className="feature-card p-4 bg-white rounded-3 shadow-sm h-100">
+                    <Award className="feature-icon text-primary mb-3" size={48} />
+                    <h3 className="h5 mb-3">Qualité garantie</h3>
+                    <p className="text-muted">Tous les lieux sont vérifiés selon des normes de qualité</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
         </div>
     );
 };

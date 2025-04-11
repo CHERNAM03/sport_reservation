@@ -41,68 +41,68 @@ const SignupPage = () => {
 
     return (
         <div className="signup-page-tasky">
-            <div className="signup-form-container">
-                <h1 className="signup-heading">Create Account</h1>
-                <p className="signup-details">Please enter your details to create an account</p>
-                <form className="signup-form" onSubmit={handleSubmit}>
-                    {error && <p style={{ color: 'red' }}>{error}</p>}
-                    <div className="form-group">
-                        <label htmlFor="userName">userName</label>
-                        <input
-                            type="text"
-                            id="username"
-                            placeholder="Enter your user name"
-                            value={username}
-                            onChange={(e) => setUserName(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter your password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="confirmPassword">Confirm Password</label>
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            placeholder="Confirm your password"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                        />
-                    </div>
-                    <button type="submit" className="signup-button">Sign Up</button>
-                </form>
-                <p className="login-link">
-                    Already have an account? <Link to="/login"> login </Link>
-                </p>
-            </div>
-            <div className="illustration-container">
-                <img src={illustration} alt="Tasky Illustration" className="tasky-illustration" />
-                <p className="illustration-text">Manage your task in a easy and more efficient way with Tasky...</p>
-                <div className="dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+        <div className="signup-form-container">
+            <h1 className="signup-heading">Créer un compte</h1>
+            <p className="signup-details">Veuillez entrer vos informations pour créer un compte</p>
+            <form className="signup-form" onSubmit={handleSubmit}>
+                {error && <p style={{ color: 'red' }}>{error}</p>}
+                <div className="form-group">
+                    <label htmlFor="userName">Nom d'utilisateur</label>
+                    <input
+                        type="text"
+                        id="username"
+                        placeholder="Entrez votre nom d'utilisateur"
+                        value={username}
+                        onChange={(e) => setUserName(e.target.value)}
+                    />
                 </div>
+                <div className="form-group">
+                    <label htmlFor="email">Adresse e-mail</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Entrez votre adresse e-mail"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                    />
+                </div>
+    
+                <div className="form-group">
+                    <label htmlFor="password">Mot de passe</label>
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Entrez votre mot de passe"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="confirmPassword">Confirmez le mot de passe</label>
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        placeholder="Confirmez votre mot de passe"
+                        value={confirmPassword}
+                        onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                </div>
+                <button type="submit" className="signup-button">S'inscrire</button>
+            </form>
+            <p className="login-link">
+                Vous avez déjà un compte ? <Link to="/login"> Connectez-vous </Link>
+            </p>
+        </div>
+        <div className="illustration-container">
+            <img src={illustration} alt="Illustration Tasky" className="tasky-illustration" />
+            <p className="illustration-text">Gérez vos tâches de manière simple et efficace avec Tasky...</p>
+            <div className="dots">
+                <span></span>
+                <span></span>
+                <span></span>
             </div>
         </div>
+    </div>
     );
 };
 

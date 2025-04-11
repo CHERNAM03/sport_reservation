@@ -53,52 +53,52 @@ const LoginPageTasky = () => {
 
     return (
         <div className="login-page-tasky">
-            <div className="login-form-container">
-                <h1 className="welcome-heading">Welcome Back!</h1>
-                <p className="login-details">Please enter login details below</p>
-                <form className="login-form" onSubmit={handleSubmit}>
-                    <div className="form-group">
-                        <label htmlFor="email">Email</label>
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter the email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">Password</label>
-                        <input
-                            type="password"
-                            id="password"
-                            placeholder="Enter the Password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                        />
-                    </div>
-                    <a href="/forgot-password" className="forgot-password">Forgot password?</a>
-                    <button type="submit" className="sign-in-button">Sign in</button>
-                </form>
-                {error && <p className="error-message">{error}</p>}
-                <div className="or-continue">
-                    <hr />
-                    <span>Or continue</span>
-                    <hr />
-                </div>
-                <button className="google-login-button">Log in with Google</button>
-                <p className="signup-link">Don't have an account? <Link to="/signup">Sign up</Link></p>
+    <div className="login-form-container">
+        <h1 className="welcome-heading">Bienvenue !</h1>
+        <p className="login-details">Veuillez entrer vos identifiants ci-dessous</p>
+        <form className="login-form" onSubmit={handleSubmit}>
+            <div className="form-group">
+                <label htmlFor="email">Adresse e-mail</label>
+                <input
+                    type="email"
+                    id="email"
+                    placeholder="Entrez votre adresse e-mail"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
             </div>
-            <div className="illustration-container">
-                <img src={illustration} alt="Tasky Illustration" className="tasky-illustration" />
-                <p className="illustration-text">Manage your task in a easy and more efficient way with Tasky...</p>
-                <div className="dots">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
+            <div className="form-group">
+                <label htmlFor="password">Mot de passe</label>
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Entrez votre mot de passe"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
             </div>
+            <a href="/forgot-password" className="forgot-password">Mot de passe oublié ?</a>
+            <button type="submit" className="sign-in-button">Se connecter</button>
+        </form>
+        {error && <p className="error-message">{error}</p>}
+        <div className="or-continue">
+            <hr />
+            <span>Ou continuer</span>
+            <hr />
         </div>
+        <button className="google-login-button">Se connecter avec Google</button>
+        <p className="signup-link">Vous n'avez pas de compte ? <Link to="/signup">Inscrivez-vous</Link></p>
+    </div>
+    <div className="illustration-container">
+        <img src={illustration} alt="Illustration Tasky" className="tasky-illustration" />
+        <p className="illustration-text">Gérez vos tâches de manière simple et efficace avec Tasky...</p>
+        <div className="dots">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+</div>
     );
 };
 

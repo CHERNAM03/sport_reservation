@@ -1,7 +1,38 @@
-.modern-footer {
+.modern-footer.full-width-footer {
+  width: 100%; /* Assure que le footer prend toute la largeur */
   background: linear-gradient(135deg, #1e3c72, #2a5298); /* Modern gradient background */
   color: white;
-  padding: 4rem 0;
+  padding: 2rem 0; /* Réduire le padding global pour mieux gérer l'espace */
+}
+
+.full-width-row {
+  display: flex; /* Utilise Flexbox pour organiser les éléments */
+  justify-content: space-between; /* Répartit l'espace entre les éléments */
+  flex-wrap: wrap; /* Permet aux colonnes de passer à la ligne si nécessaire */
+  width: 100%;
+  padding: 1rem 20px;
+  box-sizing: border-box;
+}
+
+.footer-segment {
+  /* Les propriétés flex: 1 et min-width peuvent être conservées ou ajustées */
+  /* flex: 1; */ /* Si vous voulez que les segments occupent l'espace restant de manière égale */
+  min-width: 300px; /* Empêche les segments de devenir trop étroits */
+  padding: 10px;
+  box-sizing: border-box;
+  /* text-align: center; Supprimez ou commentez cet alignement par défaut */
+}
+
+.logo-segment {
+  text-align: left; /* Alignement à gauche pour le logo */
+}
+
+.links-segment {
+  text-align: left; /* Alignement à gauche pour les liens */
+}
+
+.social-segment {
+  text-align: end; /* Alignement à droite pour les icônes sociales */
 }
 
 .footer-logo {
@@ -15,7 +46,7 @@
 .footer-heading {
   font-size: 1.2rem;
   font-weight: 600;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 .footer-text,
@@ -30,6 +61,12 @@
   color: white; /* Hover effect for links */
 }
 
+.social-icons {
+  display: flex;
+  justify-content: flex-end; /* Aligne les icônes à droite */
+  gap: 1rem;
+}
+
 .social-icons a {
   color: rgba(255, 255, 255, 0.7);
   font-size: 1.5rem;
@@ -39,15 +76,50 @@
 .social-icons a:hover {
   color: white;
   transform: translateY(-3px); /* Hover effect for social icons */
-
 }
+
+.full-width-bottom {
+  width: 100%;
+  background: linear-gradient(135deg, #1e3c72, #2a5298); /* Optionnel: même fond pour le copyright */
+  padding: 1rem 20px;
+  box-sizing: border-box;
+}
+
 .footer-copyright.border-top {
   border-top: 1px solid #ddd; /* Couleur et épaisseur de la bordure */
   padding-top: 10px; /* Ajoute un peu d'espace entre le trait et le texte */
+  margin: 0; /* Supprimer les marges par défaut du paragraphe */
+  text-align: center; /* Centre le copyright */
 }
-/* Responsive Design */
+
+/* Responsive Design (Ajustements supplémentaires) */
 @media (max-width: 768px) {
-  .text-center {
-      text-align: center !important;
+  .footer-segment {
+    text-align: center; /* Centre tout sur les petits écrans */
+    min-width: auto; /* Permet aux segments de prendre toute la largeur disponible */
+  }
+
+  .social-icons {
+    justify-content: center; /* Centre les icônes sur les petits écrans */
+  }
+}
+/* Responsive Design (Ajustements si nécessaire) */
+@media (max-width: 768px) {
+  .full-width-row {
+    flex-direction: column; /* Empile les éléments sur les petits écrans */
+  }
+
+  .footer-segment {
+    width: 100%; /* Chaque segment prend toute la largeur sur les petits écrans */
+    text-align: center; /* Centrez le texte sur les petits écrans */
+    margin-bottom: 20px; /* Ajoute de l'espace entre les segments empilés */
+  }
+
+  .social-segment {
+    text-align: center; /* Centrez également les icônes sociales sur les petits écrans */
+  }
+
+  .social-icons {
+    justify-content: center; /* Centrez les icônes */
   }
 }

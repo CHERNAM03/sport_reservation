@@ -7,15 +7,31 @@ exports.createTerrain = async (req, res) => {
     const terrain = await Terrain.create(req.body);
     res.status(201).json(terrain);
   } catch (error) {
-    res.status(400).json({ message: error.message });
+    if (error.name === 'SequelizeValidationError') {
+      const messages = error.errors.map(err => err.message);
+      return res.status(400).json({ message: 'Validation error', errors: messages });
+    }
+    console.error('Erreur lors de la création du terrain :', error);
+    res.status(500).json({ message: 'Erreur serveur' });
   }
 };
 
 // Récupérer tous les terrains
 exports.getAllTerrains = async (req, res) => {
+  const { page = 1, limit = 10 } = req.query;
+  const offset = (page - 1) * limit;
   try {
-    const terrains = await Terrain.findAll();
-    res.json(terrains);
+    const terrains = await Terrain.findAll({
+      limit: parseInt(limit),
+      offset: parseInt(offset),
+      order: [['createdAt', 'DESC']]
+    });
+    res.json({
+      total: terrains.count,
+      page: parseInt(page),
+      totalPages: Math.ceil(terrains.count / limit),
+      data: terrains.rows
+    });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

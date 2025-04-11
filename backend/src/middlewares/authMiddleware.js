@@ -16,8 +16,8 @@ exports.authenticateToken = (req, res, next) => {
       console.error('Erreur lors de la vérification du token :', err.message);
       return res.status(403).json({ message: 'Token invalide' });
     }
-    req.user = user; // Ajouter les informations de l'utilisateur à la requête
-    console.log('Utilisateur authentifié :', user);
+    console.log('Token décodé :', user); // Vérifiez que le rôle est présent
+    req.user = user;
     next();
   });
 };

@@ -14,7 +14,7 @@ router.get('/gestionnaire', authenticateToken, authorizeRoles(['gestionnaire']),
 });
 
 // Route accessible uniquement aux utilisateurs
-router.get('/user', authenticateToken, authorizeRoles(['user']), (req, res) => {
+router.get('/user',authenticateToken, authorizeRoles(['user']), (req, res) => {
   res.json({ message: 'Bienvenue, utilisateur !' });
 });
 

@@ -5,7 +5,7 @@ const bcrypt = require('bcryptjs');
 const authController = {
     signup: async (req, res) => {
         try {
-            const { username, email, password } = req.body;
+            const { username, email, password, role = 'user' } = req.body;
     
             // Hachez le mot de passe avant de le sauvegarder
             const salt = await bcrypt.genSalt(10);
@@ -14,17 +14,19 @@ const authController = {
             const user = await User.create({
                 username,
                 email,
-                password: hashedPassword // Sauvegardez le mot de passe haché
+                password: hashedPassword,
+                role // Assurez-vous que le rôle est valide
             });
     
             const token = jwt.sign(
-                { id: user.id },
+                { id: user.id ,role: user.role },
                 process.env.JWT_SECRET,
                 { expiresIn: '24h' }
             );
     
             return res.status(201).json({
                 username: user.username,
+                role: user.role, // Inclure le rôle dans la réponse
                 email: user.email,
                 message: 'User created successfully',
                 token
@@ -53,7 +55,7 @@ const authController = {
             }
 
             const token = jwt.sign(
-                { id: user.id},
+                { id: user.id, role: user.role },
                 process.env.JWT_SECRET,
                 { expiresIn: '24h' }
             );
