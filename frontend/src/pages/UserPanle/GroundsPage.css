@@ -1,10 +1,51 @@
+/* Variables de couleurs - Thème Football */
+:root {
+    --primary-color: #0c9756;     /* Vert gazon */
+    --secondary-color: #1a396b;   /* Bleu foncé */
+    --accent-color: #e8a012;      /* Jaune/Or - comme un sifflet ou trophée */
+    --light-color: #f5f5f5;       /* Gris très clair - lignes du terrain */
+    --dark-color: #2c3e50;        /* Bleu très foncé / gris foncé */
+}
+
+/* Styles généraux pour la page */
 .grounds-page {
-    padding: 2rem 0;
+    padding: 2rem;
+    font-family: Arial, sans-serif;
+    background-color: var(--light-color);
+    color: var(--dark-color);
+}
+
+/* Container principal pour assurer que la barre de recherche reste au-dessus des terrains */
+.container {
+    display: flex;
+    flex-direction: column;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Barre de recherche */
+.search-bar-container {
+    position: relative;
+    margin: 0 auto 2rem auto;
+    max-width: 600px;
+    text-align: center;
+    width: 100%;
 }
 
 .search-bar {
-    position: relative;
-    margin-bottom: 2rem;
+    width: 100%;
+    padding: 1rem 2.5rem 1rem 1.5rem;
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    font-size: 1rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: var(--accent-color);
+    outline: none;
+    box-shadow: 0 0 8px rgba(232, 160, 18, 0.5);
 }
 
 .suggestions {
@@ -13,75 +54,273 @@
     left: 0;
     width: 100%;
     background-color: white;
-    border: 1px solid #ccc;
-    border-top: none;
+    border: 1px solid var(--primary-color);
+    border-radius: 0 0 12px 12px;
     list-style: none;
     padding: 0;
     margin: 0;
     z-index: 10;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .suggestions li {
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.2s;
+    border-bottom: 1px solid rgba(12, 151, 86, 0.1);
+}
+
+.suggestions li:last-child {
+    border-bottom: none;
 }
 
 .suggestions li:hover {
-    background-color: #f0f0f0;
+    background-color: rgba(12, 151, 86, 0.1);
 }
 
+/* Liste des terrains */
 .terrain-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Responsive grid */
+    grid-template-columns: repeat(2, 1fr); /* 2 colonnes */
     gap: 2rem;
+    margin-bottom: 3rem;
 }
 
+/* Carte d'un terrain */
 .terrain-item {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: none;
+    border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s;
-    padding-bottom: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+    background-color: white;
+    position: relative;
 }
 
 .terrain-item:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
 }
 
 .terrain-image {
     width: 100%;
-    height: 200px;
+    height: 220px;
     object-fit: cover;
 }
 
 .terrain-item h3 {
-    padding: 1rem;
+    padding: 1.2rem 1.5rem 0.5rem;
     margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--secondary-color);
 }
 
 .terrain-item p {
-    padding: 0 1rem;
+    padding: 0 1.5rem;
+    margin: 0.5rem 0;
+    font-size: 1rem;
+    color: var(--dark-color);
+    line-height: 1.5;
 }
+
+.terrain-action {
+    display: block;
+    margin: 1.5rem auto 1.5rem;
+    padding: 0.8rem 1.8rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: center;
+    transition: all 0.3s ease;
+    width: 80%;
+    max-width: 200px;
+}
+
+.terrain-action:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+/* Pagination améliorée */
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin: 2rem 0;
+    padding: 1rem 0;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pagination-button {
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    background-color: var(--primary-color);
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-button:hover {
+    background-color: var(--secondary-color);
+    transform: scale(1.05);
+}
+
+.pagination-button:disabled {
+    background-color: #d1d1d1;
+    color: #777;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.pagination-info {
+    font-size: 1rem;
+    color: var(--dark-color);
+    padding: 0.5rem 1rem;
+    font-weight: 500;
+    background-color: rgba(12, 151, 86, 0.1);
+    border-radius: 20px;
+}
+
+/* Actions administratives */
+.admin-actions, .manager-actions {
+    margin-top: 3rem;
+    padding: 1.5rem;
+    border: none;
+    border-radius: 12px;
+    background-color: white;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}
+
+.admin-actions h2, .manager-actions h2 {
+    font-size: 1.5rem;
+    color: var(--secondary-color);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+.admin-actions button, .manager-actions button {
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 25px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.admin-actions button.btn-primary, .manager-actions button.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.admin-actions button.btn-primary:hover, .manager-actions button.btn-primary:hover {
+    background-color: var(--secondary-color);
+}
+
+.admin-actions button.btn-danger, .manager-actions button.btn-danger {
+    background-color: #e63946;
+    color: white;
+}
+
+.admin-actions button.btn-danger:hover, .manager-actions button.btn-danger:hover {
+    background-color: #c1121f;
+}
+
+.admin-actions button.btn-warning {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.admin-actions button.btn-warning:hover {
+    background-color: #d18c00;
+}
+
+.admin-actions button.btn-secondary, .manager-actions button.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.admin-actions button.btn-secondary:hover, .manager-actions button.btn-secondary:hover {
+    background-color: #132c51;
+}
+
+/* Effet de décoration football */
+.grounds-page:before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 8px;
+    background: linear-gradient(90deg, var(--primary-color) 50%, var(--secondary-color) 50%);
+    background-size: 20px 100%;
+    z-index: 100;
+}
+
+/* Liens */
 .terrain-item-link {
     text-decoration: none;
-    color: inherit; /* Inherit color from parent */
+    color: inherit;
+    display: block;
 }
-.terrain-item-link:hover {
-    text-decoration: underline; /* Ajoute un soulignement au survol */
-    color: var(--link-hover-color, #0056b3); /* Change la couleur au survol, avec fallback */
+.custom-btn-info {
+    background-color: #167911; /* Couleur de fond */
+    color: white;             /* Couleur du texte */
+    padding: 10px 20px;       /* Espacement interne */
+    border-radius: 5px;       /* Coins arrondis */
+    border: none;             /* Supprime la bordure */
+    text-decoration: none;    /* Supprime le soulignement */
+    display: inline-block;    /* Assure un affichage similaire à un bouton */
+    text-align: center;       /* Centre le texte */
+    font-size: 16px;          /* Taille de la police */
+    font-weight: bold;        /* Texte en gras */
+    transition: background-color 0.3s ease; /* Animation au survol */
 }
 
-/* Responsive Grid for 3-4 cards per row */
-@media (min-width: 1200px) {
-    .terrain-list {
-        grid-template-columns: repeat(4, 1fr); /* 4 cards per row on large screens */
+.custom-btn-info:hover {
+    background-color: #138496; /* Couleur au survol */
+}
+/* Responsive Design */
+@media (max-width: 767px) {
+    .search-bar-container {
+        max-width: 100%;
     }
-}
 
-@media (max-width: 1199px) and (min-width: 768px) {
     .terrain-list {
-        grid-template-columns: repeat(3, 1fr); /* 3 cards per row on medium screens */
+        grid-template-columns: repeat(1, 1fr); /* 1 colonne sur petits écrans */
+    }
+
+    .pagination-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .pagination-button {
+        margin: 0.3rem;
     }
 }

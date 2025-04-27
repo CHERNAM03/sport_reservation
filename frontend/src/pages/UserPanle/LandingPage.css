@@ -43,7 +43,9 @@
     animation: scaleIn 0.6s ease-out forwards;
     animation-delay: 0.6s;
 }
-
+.text-green {
+    color: green; /* Ou la nuance de vert que tu préfères */
+  }
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }

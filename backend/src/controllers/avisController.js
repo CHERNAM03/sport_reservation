@@ -48,3 +48,22 @@ exports.getAvisByGround = async (req, res) => {
     res.status(500).json({ message: 'Erreur lors de la récupération des avis.', error: error.message });
   }
 };
+
+// avisController.js
+exports.deleteAvis = async (req, res) => {
+  try {
+    const id = req.params.id;
+    console.log(`Tentative de suppression de l'avis ${id}`);
+    
+    const avis = await Avis.findByPk(id);
+    if (!avis) {
+      return res.status(404).json({ message: 'Avis non trouvé' });
+    }
+    
+    await avis.destroy();
+    return res.json({ message: 'Avis supprimé avec succès' });
+  } catch (error) {
+    console.error('Erreur lors de la suppression de l\'avis:', error);
+    return res.status(500).json({ message: error.message });
+  }
+};

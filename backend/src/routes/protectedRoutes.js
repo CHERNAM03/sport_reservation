@@ -2,7 +2,13 @@ const express = require('express');
 const router = express.Router();
 const { authenticateToken } = require('../middlewares/authMiddleware');
 const { authorizeRoles } = require('../middlewares/authMiddleware');
+//const { getManagerStats } = require('../controllers/statsController');
+const { getManagerStats } = require('../controllers/managerController');
 
+
+
+// Route accessible uniquement aux gestionnaires pour les statistiques
+router.get('/gestionnaire/stats', authenticateToken, authorizeRoles(['gestionnaire']), getManagerStats);
 // Route accessible uniquement aux administrateurs
 router.get('/admin', authenticateToken, authorizeRoles(['admin']), (req, res) => {
   res.json({ message: 'Bienvenue, administrateur !' });

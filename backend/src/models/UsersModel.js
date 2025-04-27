@@ -1,6 +1,7 @@
 const { DataTypes } = require('sequelize');
 const sequelize = require('../config/database');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken'); // Import de jsonwebtoken
 
 const User = sequelize.define('User', {
   id: {
@@ -29,10 +30,16 @@ const User = sequelize.define('User', {
     type: DataTypes.ENUM('admin', 'gestionnaire', 'user'), // Définir les rôles possibles
     defaultValue: 'user' // Par défaut, un utilisateur est un "user"
   }
- 
+
 }, {
   hooks: {
     beforeCreate: async (user) => {
+      if (user.changed('password')) {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+      }
+    },
+    beforeUpdate: async (user) => {
       if (user.changed('password')) {
         const salt = await bcrypt.genSalt(10);
         user.password = await bcrypt.hash(user.password, salt);
@@ -56,6 +63,7 @@ User.prototype.generateAuthToken = function() {
   };
 
   // Générer un token avec une clé secrète
+  // Assurez-vous que process.env.JWT_SECRET est défini dans vos variables d'environnement (.env)
   const token = jwt.sign(payload, process.env.JWT_SECRET || 'your_jwt_secret_key', {
     expiresIn: '24h' // Durée de validité du token
   });

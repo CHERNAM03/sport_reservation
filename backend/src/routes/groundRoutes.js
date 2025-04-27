@@ -7,8 +7,8 @@ const reservationController = require('../controllers/reservationController');
 
 // Gestionnaire : CRUD sur les terrains
 router.post('/', authenticateToken, authorizeRoles(['gestionnaire']), groundController.createTerrain);
-router.get('/', authenticateToken, authorizeRoles(['gestionnaire']), groundController.getAllTerrains);
-router.get('/:id', authenticateToken, authorizeRoles(['gestionnaire']), groundController.getTerrainById);
+router.get('/',  groundController.getAllTerrains);
+router.get('/:id', groundController.getTerrainById);
 router.put('/:id', authenticateToken, authorizeRoles(['gestionnaire']), groundController.updateTerrain);
 router.delete('/:id', authenticateToken, authorizeRoles(['gestionnaire']), groundController.deleteTerrain);
 

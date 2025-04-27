@@ -17,7 +17,12 @@ import LoginPageTasky from './pages/AuthPages/AuthPage';
 import PrivateRoute from './components/PrivateRoute';
 
 import './App.css';
-import TerrainPage from './adminterrains/TerrainPage';
+import ReservationsPage from './pages/ReservationsPage.jsx';
+import NewReservationPage from './pages/NewReservationPage.jsx';
+import ManagerDashboard from './pages/ManagerPanel/ManagerDashboard';
+import AdminPage from './pages/Admin/AdminPage.jsx';
+
+
 
 function App() {
   return (
@@ -27,48 +32,58 @@ function App() {
         <main className="main-content">
           <Routes>
             <Route path="/" element={<LandingPage />} />
+           {/*  <Route path="/admin/dashboard" element={<Dashboard />} /> */}
+            <Route path="/admin" element={<AdminPage />} />
             <Route path="/admin/users" element={<Dashboard />} />
             <Route path="/admin/roles" element={<Dashboard />} />
             <Route path="/admin/bookings" element={<Dashboard />} />
             <Route path="/admin/settings" element={<Dashboard />} />
+            <Route path="/reservations" element={<ReservationsPage />} />
+            <Route path="/reservation/new" element={<NewReservationPage />} />
+            <Route path="/manager/dashboard" element={<ManagerDashboard />} />
+            {/* Routes accessibles uniquement aux utilisateurs connectés */}
             <Route
-              path="/grounds"
-              element={
-                <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
-                  <GroundsPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/ground/:groundId"
-              element={
-                <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
-                  <GroundDetail />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/manager/grounds"
-              element={
-                <PrivateRoute allowedRoles={['manager', 'admin']}>
-                  <GroundsPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="/admin/dashboard"
-              element={
-                <PrivateRoute allowedRoles={['admin']}>
-                  <Dashboard />
-                </PrivateRoute>
-              }
-            />
+                        path="/grounds"
+                        element={
+                            <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
+                                <GroundsPage />
+                            </PrivateRoute>
+                        }
+                    />
+                    <Route
+                        path="/ground/:groundId"
+                        element={
+                            <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
+                                <GroundDetail />
+                            </PrivateRoute>
+                        }
+                    />
+             {/* Routes accessibles uniquement aux gestionnaires */}
+             <Route
+                        path="/manager/grounds"
+                        element={
+                            <PrivateRoute allowedRoles={['manager', 'admin']}>
+                                <GroundsPage />
+                            </PrivateRoute>
+                        }
+                    />
+
+                    {/* Routes accessibles uniquement aux administrateurs */}
+                    <Route
+                        path="/admin/dashboard"
+                        element={
+                            <PrivateRoute allowedRoles={['admin']}>
+                                <Dashboard />
+                            </PrivateRoute>
+                        }
+                    />
+          
             <Route path="/login" element={<LoginPageTasky />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/forgot-password" element={<PasswordForget />} />
-            <Route path="/terrain/:id" element={<TerrainPage />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          
         </main>
         <Footer />
       </div>
