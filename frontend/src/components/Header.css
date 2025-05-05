@@ -101,6 +101,37 @@
 .header-main .btn-logout:hover {
   background-color: rgba(220, 53, 69, 0.1);
 }
+/* Style de base pour les nav-links */
+.nav-link {
+  font-size: 1rem; /* Taille supérieure */
+  font-weight: bold; /* Texte en gras */
+  color:#fff; /* Couleur par défaut */
+  text-decoration: none; /* Supprime le soulignement */
+  transition: color 0.3s ease, transform 0.3s ease; /* Effet de transition */
+}
+
+/* Effet hover */
+.nav-link:hover {
+  color: #ff6600; /* Couleur adaptée au logo */
+  transform: scale(1.1); /* Agrandissement léger */
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3); /* Ombre légère */
+}
+
+/* Style actif pour le lien */
+.nav-link.active {
+  color: #ff6600; /* Couleur active */
+  border-bottom: 2px solid #ff6600; /* Soulignement actif */
+}
+.nav-link:hover {
+  color: #4CAF50; /* Couleur adaptée au logo */
+  transform: scale(1.1);
+  text-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.nav-link.active {
+  color: #4CAF50;
+  border-bottom: 2px solid #4CAF50;
+}
 
 /* Styles desktop */
 @media (min-width: 992px) {
@@ -172,5 +203,49 @@
   .header-main .container > div:has(.User),
   .header-main .container > div > .User {
     display: none !important;
+  }
+}
+
+/* Petits écrans (max-width: 768px) */
+@media (max-width: 768px) {
+  .nav-link {
+    font-size: 1rem; /* Réduction de la taille de la police */
+  }
+
+  .nav-link:hover {
+    transform: scale(1.05); /* Réduction de l'effet d'agrandissement */
+  }
+
+  .nav-link.active {
+    border-bottom: 1px solid #ff6600; /* Réduction de l'épaisseur du soulignement */
+  }
+}
+
+/* Très petits écrans (max-width: 576px) */
+@media (max-width: 576px) {
+  .nav-link {
+    font-size: 0.9rem; /* Taille encore plus petite */
+  }
+
+  .nav-link:hover {
+    transform: scale(1.05); /* Réduction de l'effet d'agrandissement */
+  }
+  .nav-link.active {
+    border-bottom: 1px solid #4CAF50; /* Couleur adaptée */
+  }
+}
+
+/* Grands écrans (min-width: 992px) */
+@media (min-width: 992px) {
+  .nav-link {
+    font-size: 1.4rem; /* Taille plus grande pour les grands écrans */
+  }
+
+  .nav-link:hover {
+    transform: scale(1.2); /* Effet d'agrandissement plus prononcé */
+  }
+
+  .nav-link.active {
+    border-bottom: 3px solid #4CAF50; /* Soulignement plus épais */
   }
 }

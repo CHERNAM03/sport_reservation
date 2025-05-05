@@ -17,11 +17,12 @@ const AdminPage = () => {
         totalUsers: 0,
         totalReviews: 0,
         totalTerrains: 0,
-      });
+    });
 
     // Vérifier l'authentification au chargement du composant
     useEffect(() => {
-        const token = localStorage.getItem('token');
+        // Utiliser la même clé que dans PrivateRoute
+        const token = localStorage.getItem('authToken');
         if (!token) {
             navigate('/login');
             return;
@@ -32,7 +33,8 @@ const AdminPage = () => {
     useEffect(() => {
         const fetchUsers = async () => {
             try {
-                const token = localStorage.getItem('token');
+                // Utiliser la même clé que dans PrivateRoute
+                const token = localStorage.getItem('authToken');
                 if (!token) {
                     throw new Error('Vous devez être connecté pour accéder à cette page');
                 }
@@ -67,7 +69,8 @@ const AdminPage = () => {
     useEffect(() => {
         const fetchReviews = async () => {
             try {
-                const token = localStorage.getItem('token');
+                // Utiliser la même clé que dans PrivateRoute
+                const token = localStorage.getItem('authToken');
                 if (!token) {
                     throw new Error('Vous devez être connecté pour accéder à cette page');
                 }
@@ -105,7 +108,8 @@ const AdminPage = () => {
         }
 
         try {
-            const token = localStorage.getItem('token');
+            // Utiliser la même clé que dans PrivateRoute
+            const token = localStorage.getItem('authToken');
             const response = await fetch(`http://localhost:5000/api/users/${userId}`, {
                 method: 'DELETE',
                 headers: {
@@ -119,6 +123,9 @@ const AdminPage = () => {
 
             setUsers(users.filter(user => user.id !== userId));
             alert('Utilisateur supprimé avec succès');
+            
+            // Mettre à jour les statistiques après suppression
+            fetchStatistics();
         } catch (err) {
             setError(err.message);
         }
@@ -131,7 +138,8 @@ const AdminPage = () => {
         }
 
         try {
-            const token = localStorage.getItem('token');
+            // Utiliser la même clé que dans PrivateRoute
+            const token = localStorage.getItem('authToken');
             const response = await fetch(`http://localhost:5000/api/avis/${reviewId}`, {
                 method: 'DELETE',
                 headers: {
@@ -146,33 +154,45 @@ const AdminPage = () => {
 
             setReviews(reviews.filter(review => review.id !== reviewId));
             alert('Avis supprimé avec succès');
+            
+            // Mettre à jour les statistiques après suppression
+            fetchStatistics();
         } catch (err) {
             alert(`Impossible de supprimer l'avis : ${err.message}`);
         }
     };
 
-    // Récupérer les statistiques
-    useEffect(() => {
-        const fetchStatistics = async () => {
-          try {
+    // Fonction pour récupérer les statistiques
+    const fetchStatistics = async () => {
+        try {
             const response = await fetch('http://localhost:5000/api/statistics/stats');
             if (!response.ok) {
-              throw new Error('Erreur lors de la récupération des statistiques');
+                throw new Error('Erreur lors de la récupération des statistiques');
             }
             const data = await response.json();
             setStatistics(data);
-          } catch (error) {
+        } catch (error) {
             console.error('Erreur fetchStatistics :', error.message);
-          }
-        };
-    
+        }
+    };
+
+    // Récupérer les statistiques au chargement et toutes les 30 secondes
+    useEffect(() => {
         fetchStatistics();
-      }, []);
+        
+        // Mettre à jour les statistiques toutes les 30 secondes
+        const interval = setInterval(() => {
+            fetchStatistics();
+        }, 30000);
+        
+        // Nettoyer l'intervalle lorsque le composant est démonté
+        return () => clearInterval(interval);
+    }, []);
 
     // Gestion de la recherche et de la pagination
     const filteredUsers = users.filter((user) =>
-        (user.username || user.name).toLowerCase().includes(searchTerm.toLowerCase()) ||
-        user.email.toLowerCase().includes(searchTerm.toLowerCase())
+        (user.username || user.name || '').toLowerCase().includes(searchTerm.toLowerCase()) ||
+        (user.email || '').toLowerCase().includes(searchTerm.toLowerCase())
     );
 
     const totalPages = Math.ceil(filteredUsers.length / usersPerPage);
@@ -211,7 +231,7 @@ const AdminPage = () => {
                             <ul>
                                 {paginatedUsers.map((user) => (
                                     <li key={user.id}>
-                                        {user.username || user.name} - {user.email} - {user.role}
+                                        {user.username || user.name || 'Utilisateur sans nom'} - {user.email || 'Email non disponible'} - {user.role || 'Rôle non défini'}
                                         <button
                                             onClick={() => deleteUser(user.id)}
                                             style={{
@@ -236,10 +256,10 @@ const AdminPage = () => {
                                 >
                                     Précédent
                                 </button>
-                                <span>Page {currentPage} sur {totalPages}</span>
+                                <span>Page {currentPage} sur {totalPages || 1}</span>
                                 <button
-                                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages))}
-                                    disabled={currentPage === totalPages}
+                                    onClick={() => setCurrentPage((prev) => Math.min(prev + 1, totalPages || 1))}
+                                    disabled={currentPage === totalPages || totalPages === 0}
                                 >
                                     Suivant
                                 </button>
@@ -250,42 +270,71 @@ const AdminPage = () => {
 
                 {/* Gestion des avis */}
                 <section className="review-management">
-                  <h2>Gestion des Avis</h2>
-                   {loadingReviews && <p>Chargement des avis...</p>}
-                   {errorReviews && <p style={{ color: 'red' }}>{errorReviews}</p>}
-                   {!loadingReviews && !errorReviews && reviews.length === 0 && (
-                   <p>Aucun avis disponible.</p>
-                   )}
-                  {!loadingReviews && !errorReviews && reviews.length > 0 && (
-                   <ul>
-                      {reviews.map((review) => (
-                          <li key={review.id}>
-                           <p>
-                          <strong>{review.userName || `Utilisateur ${review.userId}`}</strong>: {review.comment}
-                          </p>
-                         <p>Note : {review.rating}/5</p>
-                      <button onClick={() => deleteReview(review.id)}>Supprimer</button>
-                         </li>
-                    ))}
-                   </ul>
-                     )}
-                 </section>
+                    <h2>Gestion des Avis</h2>
+                    {loadingReviews && <p>Chargement des avis...</p>}
+                    {errorReviews && <p style={{ color: 'red' }}>{errorReviews}</p>}
+                    {!loadingReviews && !errorReviews && reviews.length === 0 && (
+                        <p>Aucun avis disponible.</p>
+                    )}
+                    {!loadingReviews && !errorReviews && reviews.length > 0 && (
+                        <ul>
+                            {reviews.map((review) => (
+                                <li key={review.id}>
+                                    <p>
+                                        <strong>{review.userName || `Utilisateur ${review.userId}`}</strong>: {review.comment}
+                                    </p>
+                                    <p>Note : {review.rating}/5</p>
+                                    <button 
+                                        onClick={() => deleteReview(review.id)}
+                                        style={{
+                                            backgroundColor: 'red',
+                                            color: 'white',
+                                            border: 'none',
+                                            padding: '5px 10px',
+                                            borderRadius: '4px',
+                                            cursor: 'pointer',
+                                        }}
+                                    >
+                                        Supprimer
+                                    </button>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </section>
 
                 {/* Statistiques */}
                 <section className="statistics">
-  <h2>Statistiques</h2>
-  <ul>
-    <li>
-      <i className="fas fa-users"></i> Nombre total d'utilisateurs : <span>{statistics.totalUsers}</span>
-    </li>
-    <li>
-      <i className="fas fa-comments"></i> Nombre total d'avis : <span>{statistics.totalReviews}</span>
-    </li>
-    <li>
-      <i className="fas fa-futbol"></i> Terrains disponibles : <span>{statistics.totalTerrains}</span>
-    </li>
-  </ul>
-</section>
+                    <h2>Statistiques</h2>
+                    <div className="refresh-info">
+                        <p><small>Mise à jour automatique toutes les 30 secondes</small></p>
+                        <button 
+                            onClick={fetchStatistics}
+                            style={{
+                                backgroundColor: '#007bff',
+                                color: 'white',
+                                border: 'none',
+                                padding: '5px 10px',
+                                borderRadius: '4px',
+                                cursor: 'pointer',
+                                marginBottom: '10px'
+                            }}
+                        >
+                            Actualiser maintenant
+                        </button>
+                    </div>
+                    <ul>
+                        <li>
+                            <i className="fas fa-users"></i> Nombre total d'utilisateurs : <span>{statistics.totalUsers || statistics.users || 0}</span>
+                        </li>
+                        <li>
+                            <i className="fas fa-comments"></i> Nombre total d'avis : <span>{statistics.totalReviews || statistics.comments || 0}</span>
+                        </li>
+                        <li>
+                            <i className="fas fa-futbol"></i> Terrains disponibles : <span>{statistics.totalTerrains || statistics.grounds || 0}</span>
+                        </li>
+                    </ul>
+                </section>
             </div>
         </div>
     );

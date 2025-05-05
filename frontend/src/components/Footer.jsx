@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Footer.css'; // Import custom CSS
 
 function Footer() {
@@ -6,8 +7,10 @@ function Footer() {
         <footer className="modern-footer full-width-footer">
         <div className="row full-width-row g-4">
             <div className="col-12 col-md-4 footer-segment logo-segment">
-                <img src="/images/logo.png" alt="MonTerrain" className="footer-logo img-fluid mb-3" width="150" />
-                <p className="footer-text">Trouvez et réservez facilement votre terrain de football.</p>
+            <Link className="navbar-brand footer-logo" to="/">
+                <span className="brand-highlight">MON</span>TERRAIN
+            </Link>
+            <p className="footer-text">Trouvez et réservez facilement votre terrain de football.</p>
             </div>
             <div className="col-12 col-md-4 footer-segment links-segment">
                <h5 className="footer-heading mb-3">Liens rapides</h5>

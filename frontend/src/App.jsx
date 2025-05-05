@@ -10,7 +10,7 @@ import LandingPage from './pages/UserPanle/LandingPage';
 import GroundsPage from './pages/UserPanle/GroundsPage';
 import GroundDetail from './pages/UserPanle/GroundDetail';
 
-import AuthP from './pages/AuthPages/AuthPage';
+
 import SignupPage from './pages/AuthPages/SignupPage';
 import PasswordForget from './pages/AuthPages/PasswordForget';
 import LoginPageTasky from './pages/AuthPages/AuthPage';
@@ -21,7 +21,7 @@ import ReservationsPage from './pages/ReservationsPage.jsx';
 import NewReservationPage from './pages/NewReservationPage.jsx';
 import ManagerDashboard from './pages/ManagerPanel/ManagerDashboard';
 import AdminPage from './pages/Admin/AdminPage.jsx';
-
+import UserPage from './pages/UserPage.jsx';
 
 
 function App() {
@@ -45,7 +45,7 @@ function App() {
             <Route
                         path="/grounds"
                         element={
-                            <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
+                            <PrivateRoute allowedRoles={['user', 'gestionnaire', 'admin']}>
                                 <GroundsPage />
                             </PrivateRoute>
                         }
@@ -53,7 +53,7 @@ function App() {
                     <Route
                         path="/ground/:groundId"
                         element={
-                            <PrivateRoute allowedRoles={['user', 'manager', 'admin']}>
+                            <PrivateRoute allowedRoles={['user', 'gestionnaire', 'admin']}>
                                 <GroundDetail />
                             </PrivateRoute>
                         }
@@ -62,7 +62,7 @@ function App() {
              <Route
                         path="/manager/grounds"
                         element={
-                            <PrivateRoute allowedRoles={['manager', 'admin']}>
+                            <PrivateRoute allowedRoles={['gestionnaire', 'admin']}>
                                 <GroundsPage />
                             </PrivateRoute>
                         }
@@ -77,7 +77,8 @@ function App() {
                             </PrivateRoute>
                         }
                     />
-          
+                    
+            <Route path="/user" element={<UserPage />} />
             <Route path="/login" element={<LoginPageTasky />} />
             <Route path="/signup" element={<SignupPage />} />
             <Route path="/forgot-password" element={<PasswordForget />} />

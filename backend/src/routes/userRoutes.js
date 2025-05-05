@@ -175,18 +175,6 @@ router.post('/create-user', authenticateToken, authorizeRoles(['admin']), async 
   }
 });
 
-// Route pour récupérer tous les utilisateurs (accessible uniquement aux administrateurs)
-  /* router.get('/', authenticateToken, authorizeRoles(['admin']), async (req, res) => {
-  try {
-    const users = await User.findAll({
-      attributes: ['id', 'username', 'email', 'role', 'createdAt']
-    });
-    res.status(200).json(users);
-  } catch (error) {
-    console.error('Erreur lors de la récupération des utilisateurs :', error);
-    res.status(500).json({ message: 'Une erreur est survenue lors de la récupération des utilisateurs.' });
-  }
-});   */
 // Route pour récupérer un utilisateur par ID (accessible uniquement aux administrateurs)
 router.get('/:id', authenticateToken, authorizeRoles(['admin']), async (req, res) => {
   try {
@@ -203,6 +191,33 @@ router.get('/:id', authenticateToken, authorizeRoles(['admin']), async (req, res
   } catch (error) {
     console.error('Erreur lors de la récupération de l\'utilisateur :', error);
     res.status(500).json({ message: 'Une erreur est survenue lors de la récupération de l\'utilisateur.' });
+  }
+});
+router.get('/', async (req, res) => {
+  try {
+      const users = await User.findAll(); // Sequelize pour récupérer tous les utilisateurs
+      res.status(200).json(users);
+  } catch (error) {
+      console.error('Erreur lors de la récupération des utilisateurs :', error);
+      res.status(500).json({ message: 'Erreur lors de la récupération des utilisateurs.' });
+  }
+});
+
+// Route pour supprimer un utilisateur (accessible uniquement aux administrateurs)
+router.delete('/:id', authenticateToken, authorizeRoles(['admin']), async (req, res) => {
+  try {
+      const userId = req.params.id;
+      const user = await User.findByPk(userId);
+
+      if (!user) {
+          return res.status(404).json({ message: 'Utilisateur non trouvé' });
+      }
+
+      await user.destroy();
+      res.status(200).json({ message: 'Utilisateur supprimé avec succès' });
+  } catch (error) {
+      console.error('Erreur lors de la suppression de l\'utilisateur :', error);
+      res.status(500).json({ message: 'Erreur serveur' });
   }
 });
  

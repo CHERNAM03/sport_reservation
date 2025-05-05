@@ -45,7 +45,7 @@ const LoginPageTasky = () => {
                 console.log('Réponse de l\'API :', response.data);
                 // Redirection en fonction du rôle
                 if (user.role === 'admin') {
-                    navigate('/admin');
+                    navigate('/grounds');
                 } else if (user.role === 'gestionnaire') {
                     navigate('/grounds');
                 } else if (user.role === 'user') {
